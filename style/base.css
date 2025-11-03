@@ -2,11 +2,20 @@
 img {
   width: 100%;
   margin: auto;
-  max-width: 1440px;
+  max-width: 1280px;
 }
 
 body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+  }
 }
