@@ -109,6 +109,25 @@ code {
   color: var(--ink);
 }
 
+.store-cta {
+  flex: none;
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #ffffff;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.store-cta:hover {
+  color: #ffffff;
+  background: var(--brand-deep);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -515,8 +534,12 @@ ul {
     flex: 0 0 auto;
   }
 
+  .store-cta {
+    width: 100%;
+  }
+
   h1 {
-    font-size: clamp(42px, 15vw, 58px);
+    font-size: 48px;
     overflow-wrap: anywhere;
   }
 
@@ -524,6 +547,7 @@ ul {
     max-width: 100%;
     font-size: 18px;
     overflow-wrap: break-word;
+    word-break: break-all;
   }
 
   .actions {
@@ -554,6 +578,12 @@ ul {
   .preview-main {
     min-width: 0;
     max-width: 100%;
+  }
+
+  .hero-copy,
+  .hero-copy h1,
+  .hero-copy .lead {
+    width: min(100%, 340px);
   }
 
   .feature-grid,
