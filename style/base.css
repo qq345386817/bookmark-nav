@@ -540,14 +540,14 @@ ul {
 
   h1 {
     font-size: 48px;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 
   .lead {
     max-width: 100%;
     font-size: 18px;
     overflow-wrap: break-word;
-    word-break: break-all;
+    word-break: normal;
   }
 
   .actions {
@@ -558,9 +558,11 @@ ul {
   .button {
     width: 100%;
     min-width: 0;
-    padding: 0 14px;
+    padding: 12px 14px;
+    line-height: 1.25;
     text-align: center;
     white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .site-header,
@@ -568,13 +570,16 @@ ul {
   .hero,
   .section,
   .content-page {
-    width: calc(100% - 28px);
+    width: calc(100vw - 40px);
     max-width: 1120px;
   }
 
   .hero,
   .hero-copy,
   .dashboard-preview,
+  .content-page,
+  .page-hero,
+  .text-panel,
   .preview-main {
     min-width: 0;
     max-width: 100%;
@@ -582,8 +587,27 @@ ul {
 
   .hero-copy,
   .hero-copy h1,
-  .hero-copy .lead {
-    width: min(100%, 340px);
+  .hero-copy .lead,
+  .page-hero h1,
+  .page-hero .lead {
+    width: 100%;
+  }
+
+  .page-hero h1,
+  .page-hero .lead,
+  .text-panel {
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .content-page .page-hero,
+  .content-page .text-panel,
+  .content-page .actions {
+    max-width: 320px;
+  }
+
+  .page-hero h1 {
+    font-size: 42px;
   }
 
   .feature-grid,
