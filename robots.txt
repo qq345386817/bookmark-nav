@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qq345386817.github.io/bookmark-nav/sitemap.xml
+Sitemap: https://bookmark-nav.luopeike.com/sitemap.xml
