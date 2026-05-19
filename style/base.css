@@ -115,6 +115,7 @@ code {
   min-height: 40px;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 8px;
   background: var(--brand);
   color: #ffffff;
@@ -126,6 +127,13 @@ code {
 .store-cta:hover {
   color: #ffffff;
   background: var(--brand-deep);
+}
+
+.store-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  display: block;
 }
 
 .sr-only {
@@ -235,6 +243,7 @@ h3 {
   min-height: 48px;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
