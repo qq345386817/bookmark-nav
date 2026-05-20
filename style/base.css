@@ -1,17 +1,17 @@
 :root {
   color-scheme: light;
-  --bg: #f4f1e8;
-  --paper: #fffaf0;
+  --bg: #eef6fb;
+  --paper: #f8fcff;
   --surface: #ffffff;
-  --surface-soft: #e7f5ef;
+  --surface-soft: #e7f5fb;
   --ink: #17211f;
   --muted: #66726d;
-  --line: #d8d2c3;
-  --brand: #1f8a70;
-  --brand-deep: #0d5c4b;
-  --accent: #d85f3d;
-  --gold: #c99a32;
-  --shadow: 0 26px 70px rgba(51, 42, 26, 0.15);
+  --line: #cfdde7;
+  --brand: #0d5c85;
+  --brand-deep: #083f5f;
+  --accent: #3fa7d9;
+  --gold: #75d0fb;
+  --shadow: 0 26px 70px rgba(16, 48, 68, 0.15);
 }
 
 * {
@@ -27,8 +27,8 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   background:
-    linear-gradient(120deg, rgba(31, 138, 112, 0.14), transparent 34%),
-    linear-gradient(300deg, rgba(216, 95, 61, 0.12), transparent 32%),
+    linear-gradient(120deg, rgba(13, 92, 133, 0.16), transparent 34%),
+    linear-gradient(300deg, rgba(63, 167, 217, 0.14), transparent 32%),
     repeating-linear-gradient(90deg, rgba(23, 33, 31, 0.035) 0 1px, transparent 1px 72px),
     var(--bg);
   color: var(--ink);
@@ -87,11 +87,11 @@ code {
 .brand-mark {
   width: 34px;
   height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: var(--ink);
-  box-shadow: inset 10px 0 0 var(--brand), inset 20px 0 0 var(--gold);
+  flex: none;
+  display: block;
+  background: var(--brand);
+  -webkit-mask: url("../images/app-icon.svg") center / contain no-repeat;
+  mask: url("../images/app-icon.svg") center / contain no-repeat;
 }
 
 .site-nav {
@@ -176,7 +176,7 @@ code {
 
 .language-select:focus {
   border-color: var(--brand);
-  outline: 3px solid rgba(31, 138, 112, 0.22);
+  outline: 3px solid rgba(13, 92, 133, 0.22);
   outline-offset: 2px;
 }
 
@@ -474,24 +474,24 @@ ul {
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --bg: #111715;
-    --paper: #18201d;
-    --surface: #1f2925;
-    --surface-soft: #15382f;
-    --ink: #f5f1e8;
-    --muted: #aeb8b2;
-    --line: #34423d;
-    --brand: #2fb58f;
-    --brand-deep: #7bddc1;
+    --bg: #08141d;
+    --paper: #0d1c28;
+    --surface: #122638;
+    --surface-soft: #102f45;
+    --ink: #eef8ff;
+    --muted: #adc2cf;
+    --line: #28475a;
+    --brand: #75d0fb;
+    --brand-deep: #b9e6fe;
     --shadow: 0 26px 70px rgba(0, 0, 0, 0.35);
   }
 
   .preview-sidebar {
-    background: #19211e;
+    background: #102230;
   }
 
   .check-list p {
-    background: rgba(31, 41, 37, 0.82);
+    background: rgba(16, 34, 48, 0.82);
   }
 }
 
