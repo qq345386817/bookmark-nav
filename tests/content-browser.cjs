@@ -21,6 +21,7 @@ const output = process.env.BOOKMARK_QA_OUTPUT || path.join(os.tmpdir(), 'bookmar
     fs.mkdirSync(output, { recursive: true });
     const { MERGE_LOCALES } = await import(pathToFileURL(path.join(root, 'scripts/merge-locales.mjs')));
     const { GUIDE_COPY } = await import(pathToFileURL(path.join(root, 'scripts/merge-guide-copy.mjs')));
+    const { MERGE_TRANSLATIONS } = await import(pathToFileURL(path.join(root, 'scripts/bookmark-merge-i18n.mjs')));
     browser = await chromium.launch({ executablePath, headless: true, ...(process.env.BOOKMARK_MERGE_PROXY_SERVER ? { proxy: { server: process.env.BOOKMARK_MERGE_PROXY_SERVER } } : {}) });
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce', acceptDownloads: true });
     const errors = [], externalRequests = [], observations = [];
@@ -50,6 +51,7 @@ const output = process.env.BOOKMARK_QA_OUTPUT || path.join(os.tmpdir(), 'bookmar
       await page.locator('#guide-language').selectOption(`/${next.route}merge-bookmarks-guide`);
       await page.locator('h1').filter({ hasText: GUIDE_COPY[next.id].title }).waitFor();
       await page.locator('.guide-intro a').click();
+      await page.locator('#status').filter({ hasText: MERGE_TRANSLATIONS[next.id].messages.needFiles }).waitFor({ timeout: 60000 });
       await page.locator('#sample').click(); await page.locator('#preview').click();
       assert.equal(await page.locator('#kept-count').textContent(), '5');
       await page.locator('#reviewed').check();

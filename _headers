@@ -2,6 +2,7 @@
   Cache-Control: public, max-age=0, must-revalidate, no-transform
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Link: </llms.txt>; rel="describedby"
 
 /merge-bookmarks
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'
@@ -12,3 +13,31 @@
 /*.md
   Content-Type: text/markdown; charset=utf-8
   X-Robots-Tag: noindex
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: noindex
+
+/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/merge-bookmarks-guide>; rel="canonical"
+
+/zh-Hans/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks-guide>; rel="canonical"
+
+/zh-Hant/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks-guide>; rel="canonical"
+
+/ja/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide>; rel="canonical"
+
+/ko/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/ko/merge-bookmarks-guide>; rel="canonical"
+
+/de-DE/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks-guide>; rel="canonical"
+
+/fr-FR/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks-guide>; rel="canonical"
+
+/es-ES/merge-bookmarks-guide.md
+  Link: <https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks-guide>; rel="canonical"

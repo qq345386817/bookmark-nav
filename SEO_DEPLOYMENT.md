@@ -27,6 +27,8 @@ node scripts/generate-content-pages.mjs
 node scripts/generate-merge-pages.mjs
 node scripts/generate-content-pages.mjs --check
 node scripts/generate-merge-pages.mjs --check
+node scripts/generate-llms.mjs
+node scripts/generate-llms.mjs --check
 node --test tests/*.test.mjs
 node tests/content-browser.cjs
 ```
@@ -34,6 +36,23 @@ node tests/content-browser.cjs
 The eight localized guides use one real task, not separate doorway pages for keyword variants. HTML is complete without JavaScript; Markdown twins share the same source and are excluded from sitemap/search indexing with `X-Robots-Tag: noindex`. The visible FAQ is ordinary content, not a promise of FAQ rich results. `WebPage` and `BreadcrumbList` describe visible content; no review scores or software-release availability are invented. Support/privacy/home/help descriptions match their respective purpose. The public website and a prepared extension package are separate release states.
 
 The development server emulates clean URLs and 404 routing on localhost. A plain Python file server does not resolve extensionless HTML URLs.
+
+## Lightweight GEO
+
+`llms.txt` is an optional concise navigation aid, generated from the current input limits and guide sources. It links to all eight Markdown guides, tools, release status and policies. Standard `Link: rel="describedby"` discovery and Markdown canonical headers are provided; Markdown and llms.txt are not separate Google indexing targets. No llms-full file, keyword stuffing, fabricated citations/ratings or special AI-ranking markup is used.
+
+This is not a ranking or AI-citation guarantee. [Google's AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) says Google Search does not use llms.txt for visibility or ranking; the file follows the optional [llms.txt proposal](https://llmstxt.org/) for other clients. The same source generates the human and machine-readable guide, so update both together.
+
+Robots policies and security protections are unchanged. The current wildcard robots rule permits crawling. An HTTP 200 response with a Googlebot or OAI-SearchBot user agent is only a diagnostic probe, not proof that actual crawler IPs pass Cloudflare filters. Actual AI-crawler requests require authenticated Cloudflare logs; the available API token failed authentication, so that part has not been verified. Do not weaken WAF or training/privacy policies to make this check pass.
+
+## Content Release Acceptance: 2026-10-09
+
+- `2c94bd3` publishes eight localized guides with real synthetic-input screenshots, help/home/support entries, internal links, unique descriptions and a 58-URL sitemap. Cloudflare Pages deployment succeeded. All 58 HTML URLs returned direct 200 with matching canonicals; eight Markdown mirrors returned the intended MIME and noindex header. Robots remained unchanged and unknown paths returned 404.
+- Search Console's refreshed sitemap report now shows **Success**, last read 2026-10-09, with 42 discovered pages from the earlier sitemap. The previous "Couldn't fetch" snapshot below is historical. The new sitemap has 58 URLs; do not equate that with 58 discovered or indexed pages.
+- The index overview is still dated 2026-10-04. Its old counts do not establish the current status of the new pages.
+- Google's actual live inspection of the English guide at 18:39 China time reported indexability and detected one valid breadcrumb item. An indexing request was accepted. A successful test or request is not confirmation that the guide is already indexed.
+- The extension source/package is unchanged. Website guide links are inside the web-only help block, and generated extension resources still pass their synchronization check.
+- Run all content/SEO/llms regression tests and production browser checks when updating guide copy. Recheck Search Console after Google processes the updated sitemap; do not repeatedly submit the same URL to raise its priority.
 
 ## Production Acceptance
 

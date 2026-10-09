@@ -1,0 +1,45 @@
+# Bookmark Nav
+
+> A Chrome bookmark new-tab dashboard and a standalone, local bookmark HTML merger. The website and Chrome extension have separate release states.
+
+The website combines two UTF-8 Netscape bookmark HTML exports. Users preview kept, duplicate and skipped entries, then download merged HTML. No account or extension is required. Selected bookmark files are processed in tab memory, not uploaded or used for analytics.
+
+Input limits per file: 10 MiB, 25,000 bookmarks and folders, and 64 named folder levels excluding the outer list. A merged output can exceed these input limits. Keep original exports.
+
+Default duplicate removal compares exact URLs within the same merged folder. Cross-folder occurrences, query strings, ordinary fragments, protocols and www differences remain distinct. Matching folders require the same name and parent path. Unsupported or unsafe URLs, including javascript: and data:, are listed as skipped.
+
+The downloaded HTML preserves supported URLs, titles, hierarchy and available dates. It does not include icons, descriptions, tags or sync metadata. Browser import adds bookmarks, not replaces them. Chrome drops empty folders and resets folder dates. Repeated imports may add copies.
+
+This does not merge Chrome accounts or control browser sync. The Chrome Web Store listing determines extension availability. Direct import, where available in the installed extension, adds a separate folder using current dates and provides checked undo, not an atomic transaction or native HTML-import equivalence.
+
+## Task guides
+
+- [How to merge Chrome bookmark HTML files](https://bookmark-nav.luopeike.com/merge-bookmarks-guide.md): English guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [如何合并 Chrome 导出的书签 HTML 文件](https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks-guide.md): 简体中文 guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [如何合併 Chrome 匯出的書籤 HTML 檔案](https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks-guide.md): 繁體中文 guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [Chrome のブックマーク HTML を結合する方法](https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide.md): 日本語 guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [Chrome 북마크 HTML 파일을 병합하는 방법](https://bookmark-nav.luopeike.com/ko/merge-bookmarks-guide.md): 한국어 guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [Chrome-Lesezeichen als HTML zusammenführen](https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks-guide.md): Deutsch guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [Comment fusionner des favoris Chrome en HTML](https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks-guide.md): Français guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+- [Cómo combinar marcadores de Chrome en HTML](https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks-guide.md): Español guide; export, merge, backup, import, example and limitations. Markdown twin of the public HTML guide.
+
+## Web tools
+
+- [English bookmark HTML merger](https://bookmark-nav.luopeike.com/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [简体中文 bookmark HTML merger](https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [繁體中文 bookmark HTML merger](https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [日本語 bookmark HTML merger](https://bookmark-nav.luopeike.com/ja/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [한국어 bookmark HTML merger](https://bookmark-nav.luopeike.com/ko/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [Deutsch bookmark HTML merger](https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [Français bookmark HTML merger](https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks): Local file selection, duplicate review and HTML download.
+- [Español bookmark HTML merger](https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks): Local file selection, duplicate review and HTML download.
+
+## Product and policies
+
+- [Bookmark Nav](https://bookmark-nav.luopeike.com/): Chrome dashboard and standalone web-tool overview.
+- [Help](https://bookmark-nav.luopeike.com/help): Installation, search and bookmark-merging help.
+- [Release status](https://bookmark-nav.luopeike.com/changelog): Published website updates versus prepared extension builds.
+- [Privacy policy](https://bookmark-nav.luopeike.com/privacy-policy): Local bookmark/file processing, settings and import records; translations are linked on the page.
+- [Support](https://bookmark-nav.luopeike.com/support): Contact information; do not send private bookmark files.
+- [Chrome Web Store](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb): Public extension version and installation.
+- [Chrome import/export documentation](https://support.google.com/chrome/answer/96816?hl=en): Browser-side HTML import and export instructions.
