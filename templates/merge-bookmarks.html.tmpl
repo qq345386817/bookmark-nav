@@ -9,6 +9,7 @@
 {{alternates}}
   <meta property="og:title" content="{{seoTitle}}"><meta property="og:description" content="{{description}}">
   <meta property="og:type" content="website"><meta property="og:url" content="{{canonical}}">
+  <meta property="og:image" content="{{previewImage}}">
   <link rel="icon" href="{{prefix}}images/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{{prefix}}style/base.css"><link rel="stylesheet" href="{{prefix}}style/bookmark-merge.css">
   <script type="module" src="{{prefix}}scripts/bookmark-merge.mjs"></script>
@@ -61,7 +62,7 @@
       </aside>
     </section>
     <section id="tool-help" class="merge-notes" aria-label="{{help}}">
-      <details id="html-help"><summary>{{importHTML}}</summary><div class="help-content"><p>{{importHelp}}</p><p>{{chromeLimits}}</p><p><a href="https://support.google.com/chrome/answer/96816?hl={{helpLanguage}}" target="_blank" rel="noopener noreferrer">{{chromeInstructions}}</a></p></div></details>
+      <details id="html-help"><summary>{{importHTML}}</summary><div class="help-content"><p>{{importHelp}}</p><p>{{chromeLimits}}</p><p><a href="merge-bookmarks-guide">{{guideLink}}</a></p><p><a href="https://support.google.com/chrome/answer/96816?hl={{helpLanguage}}" target="_blank" rel="noopener noreferrer">{{chromeInstructions}}</a></p></div></details>
       <details id="rule-help"><summary>{{rules}}</summary><div class="help-content"><p>{{duplicateHelp}}</p><p>{{folderHelp}}</p></div></details>
       <details id="format-help"><summary>{{format}}</summary><div class="help-content"><p>{{limitsHelp}}</p><p>{{exportHelp}}</p><p>{{largeOutput}}</p></div></details>
       <details id="privacy-help"><summary>{{privacy}}</summary><div class="help-content"><p>{{privacyHelp}}</p></div></details>

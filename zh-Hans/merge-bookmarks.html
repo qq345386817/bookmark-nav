@@ -17,6 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <meta property="og:title" content="合并书签 HTML 文件：预览、去重与导出 | Bookmark Nav"><meta property="og:description" content="在本机合并两份书签 HTML 导出，预览重复网址与文件夹变化，再下载合并文件导入浏览器。">
   <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <meta property="og:image" content="https://bookmark-nav.luopeike.com/images/merge-guide/zh-Hans.png">
   <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
   <script type="module" src="../scripts/bookmark-merge.mjs"></script>
@@ -69,7 +70,7 @@
       </aside>
     </section>
     <section id="tool-help" class="merge-notes" aria-label="帮助">
-      <details id="html-help"><summary>导入 HTML</summary><div class="help-content"><p>在 Chrome 书签管理器中导入下载的 HTML。这是新增书签，不是替换。请保留原始导出作为备份。</p><p>Chrome 会忽略空文件夹并重设文件夹日期，保留书签标题、网址和添加日期。书签栏标记可能映射到浏览器书签栏。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hans" target="_blank" rel="noopener noreferrer">Chrome 导入说明</a></p></div></details>
+      <details id="html-help"><summary>导入 HTML</summary><div class="help-content"><p>在 Chrome 书签管理器中导入下载的 HTML。这是新增书签，不是替换。请保留原始导出作为备份。</p><p>Chrome 会忽略空文件夹并重设文件夹日期，保留书签标题、网址和添加日期。书签栏标记可能映射到浏览器书签栏。</p><p><a href="merge-bookmarks-guide">阅读书签合并指南</a></p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hans" target="_blank" rel="noopener noreferrer">Chrome 导入说明</a></p></div></details>
       <details id="rule-help"><summary>合并规则</summary><div class="help-content"><p>移除重复项时优先保留第一份文件。网址精确匹配，参数、#片段、协议和 www 差异均保留。默认保留不同文件夹中的同网址。</p><p>仅合并名称及父级路径相同的文件夹。关闭合并时，每份来源放入独立文件夹，同级重名添加编号，并移除书签栏标记。</p></div></details>
       <details id="format-help"><summary>格式与限制</summary><div class="help-content"><p>UTF-8 Netscape 书签 HTML。每份最多 10 MiB、25,000 个书签及文件夹、64 层文件夹（不计外层列表）。不支持 JSON 和 plist。</p><p>下载保留完整层级、受支持网址、标题及可用的 ADD_DATE / LAST_MODIFIED 日期。不包含图标、描述、标签和同步信息。缺失或不支持的网址（含 javascript: 和 data:）列为未导入项，不检查链接是否失效。</p><p>合并结果可能超过输入限制，无法再次用本工具读取。独立来源文件夹增加一层。请保留原始导出。</p></div></details>
       <details id="privacy-help"><summary>隐私</summary><div class="help-content"><p>文件仅在当前标签页内存中处理，不上传、不用于分析；刷新或离开会清除已加载文件。下载留在你的设备上。</p></div></details>

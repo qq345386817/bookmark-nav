@@ -17,6 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <meta property="og:title" content="ブックマーク HTML を結合：プレビュー・重複削除・エクスポート | Bookmark Nav"><meta property="og:description" content="2 つのブックマーク HTML を端末内で結合。重複 URL とフォルダの変更を確認し、ブラウザにインポートするファイルをダウンロードできます。">
   <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <meta property="og:image" content="https://bookmark-nav.luopeike.com/images/merge-guide/ja.png">
   <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
   <script type="module" src="../scripts/bookmark-merge.mjs"></script>
@@ -69,7 +70,7 @@
       </aside>
     </section>
     <section id="tool-help" class="merge-notes" aria-label="ヘルプ">
-      <details id="html-help"><summary>HTML のインポート</summary><div class="help-content"><p>Chrome のブックマーク マネージャでダウンロードした HTML をインポートします。既存のブックマークを置き換えず、追加します。元のエクスポートをバックアップとして保持してください。</p><p>Chrome は空のフォルダを除外し、フォルダの日付を再設定します。ブックマークのタイトル、URL、追加日は保持します。ブックマークバーのマーカーはブラウザのバーに対応する場合があります。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=ja" target="_blank" rel="noopener noreferrer">Chrome のインポート手順</a></p></div></details>
+      <details id="html-help"><summary>HTML のインポート</summary><div class="help-content"><p>Chrome のブックマーク マネージャでダウンロードした HTML をインポートします。既存のブックマークを置き換えず、追加します。元のエクスポートをバックアップとして保持してください。</p><p>Chrome は空のフォルダを除外し、フォルダの日付を再設定します。ブックマークのタイトル、URL、追加日は保持します。ブックマークバーのマーカーはブラウザのバーに対応する場合があります。</p><p><a href="merge-bookmarks-guide">ブックマーク結合ガイド</a></p><p><a href="https://support.google.com/chrome/answer/96816?hl=ja" target="_blank" rel="noopener noreferrer">Chrome のインポート手順</a></p></div></details>
       <details id="rule-help"><summary>結合ルール</summary><div class="help-content"><p>重複を削除する場合は最初のファイルを優先します。URL は完全一致で比較し、パラメータ、#フラグメント、プロトコル、www の違いを保持します。既定では異なるフォルダの同一 URL を保持します。</p><p>名前と親のパスが一致するフォルダのみ結合します。結合をオフにすると元ファイルごとにフォルダを作り、同じ階層の同名フォルダに番号を付け、ブックマークバーのマーカーを除去します。</p></div></details>
       <details id="format-help"><summary>形式と制限</summary><div class="help-content"><p>UTF-8 Netscape ブックマーク HTML。各ファイルは最大 10 MiB、25,000 ブックマーク／フォルダ、64 フォルダ階層（外側のリストを除く）。JSON と plist は未対応です。</p><p>ダウンロードには全階層、対応 URL、タイトル、利用可能な ADD_DATE / LAST_MODIFIED を含みます。アイコン、説明、タグ、同期情報は含みません。欠落または未対応の URL（javascript:、data: を含む）は除外として表示します。リンクの有効性は確認しません。</p><p>結合結果が入力制限を超えると、このツールで再読込できない場合があります。元ファイル別のフォルダは階層を 1 つ増やします。元のエクスポートを保持してください。</p></div></details>
       <details id="privacy-help"><summary>プライバシー</summary><div class="help-content"><p>ファイルはこのタブのメモリ内で処理し、アップロードや分析には使用しません。再読込やページ移動で消去されます。ダウンロードは端末に保存されます。</p></div></details>

@@ -7,7 +7,7 @@ import { canonicalPath } from './seo-urls.mjs';
 const args = process.argv.slice(2);
 const port = Number(args.find(arg => arg.startsWith('--port='))?.slice(7) || 8776);
 const root = await realpath(args.find(arg => arg.startsWith('--dir='))?.slice(6) || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'));
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json' };
+const types = { '.html': 'text/html; charset=utf-8', '.md': 'text/markdown; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json' };
 
 async function findFile(name) {
   try {

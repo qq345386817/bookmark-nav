@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} | Bookmark Nav</title>
+  <meta name="description" content="{{description}}">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <link rel="canonical" href="{{canonical}}">
+{{alternates}}
+  <link rel="alternate" type="text/markdown" href="merge-bookmarks-guide.md">
+  <meta property="og:title" content="{{title}} | Bookmark Nav"><meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="article"><meta property="og:url" content="{{canonical}}">
+  <meta property="og:image" content="{{imageURL}}"><meta property="og:image:alt" content="{{imageAlt}}">
+  <link rel="icon" href="{{prefix}}images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{prefix}}style/base.css"><link rel="stylesheet" href="{{prefix}}style/merge-guide.css">
+  <script type="application/ld+json">{{structuredData}}</script>
+</head>
+<body><div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="{{navigation}}"><a href="./">{{home}}</a><a href="merge-bookmarks">{{toolLink}}</a><a href="help">{{help}}</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="guide-language">{{language}}</label><select id="guide-language" class="language-select" aria-label="{{language}}" onchange="if (this.value) window.location.href = this.value;">{{languageOptions}}</select></div>
+  </header>
+  <main class="content-page guide-page">
+    <article>
+      <header class="guide-intro"><p class="guide-meta">Bookmark Nav · <time datetime="2026-10-09">2026-10-09</time></p><h1>{{title}}</h1><p>{{intro}}</p><a class="button primary" href="merge-bookmarks">{{toolLink}}</a></header>
+      <section class="guide-section" id="steps"><h2>{{stepsTitle}}</h2><ol>{{steps}}</ol></section>
+      <section class="guide-section" id="example"><h2>{{exampleTitle}}</h2><p>{{example}}</p><figure><img src="{{imagePath}}" alt="{{imageAlt}}" width="1280" height="800" loading="lazy" decoding="async"><figcaption>{{imageCaption}}</figcaption></figure></section>
+      <section class="guide-section" id="rules"><h2>{{rulesTitle}}</h2><p>{{duplicateHelp}}</p><p>{{folderHelp}}</p><p>{{exportHelp}}</p></section>
+      <section class="guide-section" id="safety"><h2>{{safetyTitle}}</h2><p>{{safety}}</p><p>{{limitsHelp}}</p><p>{{largeOutput}}</p><p>{{chromeLimits}}</p></section>
+      <section class="guide-section" id="extension"><h2>{{extensionTitle}}</h2><p>{{extension}}</p><a href="{{storeURL}}" target="_blank" rel="noopener noreferrer">{{getExtension}}</a></section>
+      <section class="guide-section" id="questions"><h2>{{questionsTitle}}</h2><h3>{{uploadQuestion}}</h3><p>{{privacyHelp}}</p><h3>{{syncQuestion}}</h3><p>{{syncAnswer}}</p><h3>{{datesQuestion}}</h3><p>{{originalDates}}</p><p>{{chromeLimits}}</p></section>
+      <section class="guide-section" id="sources"><h2>{{sourcesTitle}}</h2><ul><li><a href="{{chromeURL}}" target="_blank" rel="noopener noreferrer">{{chromeSource}}</a></li><li><a href="merge-bookmarks">{{toolLink}}</a></li><li><a href="help">{{help}}</a></li><li><a href="privacy-policy">{{privacy}}</a></li><li><a href="merge-bookmarks-guide.md">{{markdownLabel}}</a></li></ul></section>
+    </article>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">{{home}}</a><a href="support">{{support}}</a><a href="privacy-policy">{{privacy}}</a></footer>
+</div></body>
+</html>

@@ -20,6 +20,19 @@ node scripts/validate-seo.mjs
 node scripts/dev-server.mjs --port=8776
 ```
 
+Content updates are generated from `scripts/merge-guide-copy.mjs` and the existing merge translations:
+
+```sh
+node scripts/generate-content-pages.mjs
+node scripts/generate-merge-pages.mjs
+node scripts/generate-content-pages.mjs --check
+node scripts/generate-merge-pages.mjs --check
+node --test tests/*.test.mjs
+node tests/content-browser.cjs
+```
+
+The eight localized guides use one real task, not separate doorway pages for keyword variants. HTML is complete without JavaScript; Markdown twins share the same source and are excluded from sitemap/search indexing with `X-Robots-Tag: noindex`. The visible FAQ is ordinary content, not a promise of FAQ rich results. `WebPage` and `BreadcrumbList` describe visible content; no review scores or software-release availability are invented. Support/privacy/home/help descriptions match their respective purpose. The public website and a prepared extension package are separate release states.
+
 The development server emulates clean URLs and 404 routing on localhost. A plain Python file server does not resolve extensionless HTML URLs.
 
 ## Production Acceptance

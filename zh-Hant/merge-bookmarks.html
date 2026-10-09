@@ -17,6 +17,7 @@
   <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <meta property="og:title" content="合併書籤 HTML 檔案：預覽、去重與匯出 | Bookmark Nav"><meta property="og:description" content="在本機合併兩份書籤 HTML 匯出，預覽重複網址與資料夾變更，再下載合併檔案匯入瀏覽器。">
   <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <meta property="og:image" content="https://bookmark-nav.luopeike.com/images/merge-guide/zh-Hant.png">
   <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
   <script type="module" src="../scripts/bookmark-merge.mjs"></script>
@@ -69,7 +70,7 @@
       </aside>
     </section>
     <section id="tool-help" class="merge-notes" aria-label="說明">
-      <details id="html-help"><summary>匯入 HTML</summary><div class="help-content"><p>在 Chrome 書籤管理員中匯入下載的 HTML。這是新增書籤，不是取代。請保留原始匯出作為備份。</p><p>Chrome 會略過空資料夾並重設資料夾日期，保留書籤標題、網址與新增日期。書籤列標記可能對應至瀏覽器書籤列。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hant" target="_blank" rel="noopener noreferrer">Chrome 匯入說明</a></p></div></details>
+      <details id="html-help"><summary>匯入 HTML</summary><div class="help-content"><p>在 Chrome 書籤管理員中匯入下載的 HTML。這是新增書籤，不是取代。請保留原始匯出作為備份。</p><p>Chrome 會略過空資料夾並重設資料夾日期，保留書籤標題、網址與新增日期。書籤列標記可能對應至瀏覽器書籤列。</p><p><a href="merge-bookmarks-guide">閱讀書籤合併指南</a></p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hant" target="_blank" rel="noopener noreferrer">Chrome 匯入說明</a></p></div></details>
       <details id="rule-help"><summary>合併規則</summary><div class="help-content"><p>移除重複項目時優先保留第一份檔案。網址精確比對，參數、#片段、通訊協定與 www 差異均保留。預設保留不同資料夾中的相同網址。</p><p>僅合併名稱與上層路徑相同的資料夾。關閉合併時，每份來源放入獨立資料夾，同層重名加上編號，並移除書籤列標記。</p></div></details>
       <details id="format-help"><summary>格式與限制</summary><div class="help-content"><p>UTF-8 Netscape 書籤 HTML。每份最多 10 MiB、25,000 個書籤與資料夾、64 層資料夾（不計外層清單）。不支援 JSON 與 plist。</p><p>下載保留完整階層、支援的網址、標題及可用的 ADD_DATE / LAST_MODIFIED 日期。不包含圖示、描述、標籤與同步資訊。缺少或不支援的網址（含 javascript: 與 data:）列為略過項目，不檢查連結是否失效。</p><p>合併結果可能超過輸入限制，無法再用本工具讀取。獨立來源資料夾增加一層。請保留原始匯出。</p></div></details>
       <details id="privacy-help"><summary>隱私</summary><div class="help-content"><p>檔案僅在目前分頁的記憶體中處理，不上傳、不用於分析；重新整理或離開會清除已載入檔案。下載留在你的裝置上。</p></div></details>

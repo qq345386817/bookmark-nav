@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrome のブックマーク HTML を結合する方法 | Bookmark Nav</title>
+  <meta name="description" content="Chrome ブックマークを書き出し、2 つの HTML を結合して重複 URL を確認し、再インポートする手順。バックアップと日付の制限も説明します。">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks-guide">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks-guide">
+  <link rel="alternate" type="text/markdown" href="merge-bookmarks-guide.md">
+  <meta property="og:title" content="Chrome のブックマーク HTML を結合する方法 | Bookmark Nav"><meta property="og:description" content="Chrome ブックマークを書き出し、2 つの HTML を結合して重複 URL を確認し、再インポートする手順。バックアップと日付の制限も説明します。">
+  <meta property="og:type" content="article"><meta property="og:url" content="https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide">
+  <meta property="og:image" content="https://bookmark-nav.luopeike.com/images/merge-guide/ja.png"><meta property="og:image:alt" content="日本語のウェブ結合ツールで 5 ブックマークを保持し 1 重複を削除するサンプルプレビュー">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/merge-guide.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide#page","url":"https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide","name":"Chrome のブックマーク HTML を結合する方法","description":"Chrome ブックマークを書き出し、2 つの HTML を結合して重複 URL を確認し、再インポートする手順。バックアップと日付の制限も説明します。","inLanguage":"ja","dateModified":"2026-10-09","isPartOf":{"@type":"WebSite","name":"Bookmark Nav","url":"https://bookmark-nav.luopeike.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bookmark-nav.luopeike.com/ja/"},{"@type":"ListItem","position":2,"name":"Chrome のブックマーク HTML を結合する方法","item":"https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide"}]}]}</script>
+</head>
+<body><div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="ナビゲーション"><a href="./">ホーム</a><a href="merge-bookmarks">書き出したブックマークを結合</a><a href="help">ヘルプ</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="guide-language">言語</label><select id="guide-language" class="language-select" aria-label="言語" onchange="if (this.value) window.location.href = this.value;"><option value="/merge-bookmarks-guide">English</option><option value="/zh-Hans/merge-bookmarks-guide">简体中文</option><option value="/zh-Hant/merge-bookmarks-guide">繁體中文</option><option value="/ja/merge-bookmarks-guide" selected>日本語</option><option value="/ko/merge-bookmarks-guide">한국어</option><option value="/de-DE/merge-bookmarks-guide">Deutsch</option><option value="/fr-FR/merge-bookmarks-guide">Français</option><option value="/es-ES/merge-bookmarks-guide">Español</option></select></div>
+  </header>
+  <main class="content-page guide-page">
+    <article>
+      <header class="guide-intro"><p class="guide-meta">Bookmark Nav · <time datetime="2026-10-09">2026-10-09</time></p><h1>Chrome のブックマーク HTML を結合する方法</h1><p>2 つの Chrome ブックマーク HTML を選び、重複をプレビューし、結合ファイルをダウンロードして Chrome にインポートします。書き出したファイルを結合するもので、アカウントや同期の統合ではありません。</p><a class="button primary" href="merge-bookmarks">書き出したブックマークを結合</a></header>
+      <section class="guide-section" id="steps"><h2>書き出し・結合・インポート</h2><ol><li>chrome://bookmarks を開き、ブックマーク マネージャのメニューでエクスポートを選びます。元の HTML をバックアップとして保存し、もう一方のライブラリも書き出します。</li><li>ウェブ版ツールで 2 つのファイルを選びます。重複削除時は最初のファイルが優先されます。</li><li>まず同じフォルダ内だけの重複削除で、保持・重複・除外項目を確認してからルールを変更します。</li><li>プレビューを確認して HTML をダウンロードします。サイトからブラウザのブックマークを変更することはありません。</li><li>Chrome ブックマーク マネージャのメニューから HTML をインポートします。まず空のテスト用プロファイルで確認すると、通常のライブラリへの重複追加を避けられます。</li></ol></section>
+      <section class="guide-section" id="example"><h2>再現できる 6 リンクの例</h2><p>サンプルには合計 6 リンクがあり、既定のプレビューは 5 を保持し、同じフォルダ内の重複を 1 つ削除します。Learning と Work の同一 URL は両方に残り、#setup と #troubleshooting は別のリンクです。</p><figure><img src="../images/merge-guide/ja.png" alt="日本語のウェブ結合ツールで 5 ブックマークを保持し 1 重複を削除するサンプルプレビュー" width="1280" height="800" loading="lazy" decoding="async"><figcaption>合成サンプルによる実際のウェブ版画面。個人のブックマークは含みません。</figcaption></figure></section>
+      <section class="guide-section" id="rules"><h2>保持と除外のルール</h2><p>重複を削除する場合は最初のファイルを優先します。URL は完全一致で比較し、パラメータ、#フラグメント、プロトコル、www の違いを保持します。既定では異なるフォルダの同一 URL を保持します。</p><p>名前と親のパスが一致するフォルダのみ結合します。結合をオフにすると元ファイルごとにフォルダを作り、同じ階層の同名フォルダに番号を付け、ブックマークバーのマーカーを除去します。</p><p>ダウンロードには全階層、対応 URL、タイトル、利用可能な ADD_DATE / LAST_MODIFIED を含みます。アイコン、説明、タグ、同期情報は含みません。欠落または未対応の URL（javascript:、data: を含む）は除外として表示します。リンクの有効性は確認しません。</p></section>
+      <section class="guide-section" id="safety"><h2>バックアップとインポートの制限</h2><p>両方の元ファイルを保持し、インポート先もバックアップしてください。インポートは追加なので、繰り返すとさらにコピーが増える場合があります。HTML は既存のライブラリを自動で置き換えません。</p><p>UTF-8 Netscape ブックマーク HTML。各ファイルは最大 10 MiB、25,000 ブックマーク／フォルダ、64 フォルダ階層（外側のリストを除く）。JSON と plist は未対応です。</p><p>結合結果が入力制限を超えると、このツールで再読込できない場合があります。元ファイル別のフォルダは階層を 1 つ増やします。元のエクスポートを保持してください。</p><p>Chrome は空のフォルダを除外し、フォルダの日付を再設定します。ブックマークのタイトル、URL、追加日は保持します。ブックマークバーのマーカーはブラウザのバーに対応する場合があります。</p></section>
+      <section class="guide-section" id="extension"><h2>ウェブ版と拡張機能の違い</h2><p>ウェブ版は拡張機能なしで使え、HTML をダウンロードするだけです。直接追加、バックアップ、変更確認付きの取り消しは拡張機能 1.3.1 向けに準備済みですが、公開版に含まれるとは限りません。インストール済みバージョンと結合メニューを確認してください。直接追加は独立フォルダを作り、元の HTML の日付ではなく現在の日付を使います。</p><a href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb" target="_blank" rel="noopener noreferrer">Bookmark Nav を入手</a></section>
+      <section class="guide-section" id="questions"><h2>よくある質問</h2><h3>ファイルはアップロードされますか？</h3><p>ファイルはこのタブのメモリ内で処理し、アップロードや分析には使用しません。再読込やページ移動で消去されます。ダウンロードは端末に保存されます。</p><h3>Chrome アカウントや同期ライブラリを統合しますか？</h3><p>いいえ。端末内で 2 つの HTML を結合します。Chrome 同期はブラウザの設定に従います。</p><h3>日付と空のフォルダは保持されますか？</h3><p>元の日付を保持。HTML をブラウザにインポートできます。</p><p>Chrome は空のフォルダを除外し、フォルダの日付を再設定します。ブックマークのタイトル、URL、追加日は保持します。ブックマークバーのマーカーはブラウザのバーに対応する場合があります。</p></section>
+      <section class="guide-section" id="sources"><h2>参考資料と関連ページ</h2><ul><li><a href="https://support.google.com/chrome/answer/96816?hl=ja" target="_blank" rel="noopener noreferrer">Chrome 公式インポート・エクスポート手順</a></li><li><a href="merge-bookmarks">書き出したブックマークを結合</a></li><li><a href="help">ヘルプ</a></li><li><a href="privacy-policy">プライバシー</a></li><li><a href="merge-bookmarks-guide.md">Markdown 版</a></li></ul></section>
+    </article>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">ホーム</a><a href="support">サポート</a><a href="privacy-policy">プライバシー</a></footer>
+</div></body>
+</html>
