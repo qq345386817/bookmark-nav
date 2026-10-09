@@ -15,6 +15,7 @@ const BASE_URL = (process.env.BOOKMARK_MERGE_BASE_URL || 'http://127.0.0.1:8775'
 const OUTPUT_DIR = process.env.BOOKMARK_MERGE_QA_OUTPUT || path.join(os.tmpdir(), 'bookmark-merge-qa');
 fsSync.mkdirSync(OUTPUT_DIR, { recursive: true });
 const launchOptions = {headless: true};
+if (process.env.BOOKMARK_MERGE_PROXY_SERVER) launchOptions.proxy = { server: process.env.BOOKMARK_MERGE_PROXY_SERVER };
 if (process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE) launchOptions.executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE;
 else if (!fsSync.existsSync(chromium.executablePath())) {
   const cache = path.join(os.homedir(), 'Library/Caches/ms-playwright');

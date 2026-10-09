@@ -10,6 +10,7 @@ The public custom domain is served by Cloudflare Pages, connected to this reposi
 - Cloudflare automatically redirects `.html` and `index.html` aliases to their clean paths. Canonical, Open Graph, hreflang, navigation, language picker and sitemap must use the final URL.
 - Keep the Google verification file unchanged. Do not put error pages, unshipped pages, assets, tests or preview deployments in the sitemap.
 - `404.html` disables Cloudflare's SPA fallback so missing URLs return HTTP 404 instead of the homepage with HTTP 200.
+- `_headers` keeps responses untransformed (`no-transform`) to prevent proxy-injected analytics, and reinforces the merge tools' local-only CSP. Do not allow an analytics origin in the tool CSP just to silence an injection error. See [Cloudflare's no-transform guidance](https://developers.cloudflare.com/web-analytics/get-started/).
 
 ## Local Checks
 
