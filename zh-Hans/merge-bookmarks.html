@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>合并书签 HTML 文件：预览、去重与导出 | Bookmark Nav</title><meta name="description" content="在浏览器本地合并两份书签 HTML 导出文件，预览重复链接与文件夹变化，再下载可导入浏览器的合并结果。">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="合并书签 HTML 文件：预览、去重与导出 | Bookmark Nav"><meta property="og:description" content="在浏览器本地合并两份书签 HTML 导出文件，预览重复链接与文件夹变化，再下载可导入浏览器的合并结果。">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="Navigation"><a href="../">首页</a><a href="../help">帮助</a><a href="../merge-bookmarks" lang="en">English</a></nav>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>合并书签 HTML</h1><p class="lead">文件留在本机，不上传。</p></section>
+    <noscript><p>需要启用 JavaScript。</p></noscript>
+    <section class="merge-workspace" aria-label="文件">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">第一份文件 · 优先副本</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">尚未选择文件</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">第二份文件</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">尚未选择文件</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">合并规则</legend>
+          <div class="option-row"><label for="duplicates">重复网址</label><select id="duplicates"><option value="same-folder">仅同文件夹</option><option value="everywhere">所有文件夹</option><option value="keep-all">全部保留</option></select></div>
+          <label class="check-label" title="仅合并名称及父级路径相同的文件夹"><input id="merge-folders" type="checkbox" checked><span>合并同名文件夹</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>预览合并</button><button class="button" id="sample" type="button">示例文件</button><button class="button" id="reset" type="button">清空</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">预览</h2>
+        <dl class="merge-stats"><div><dt>保留</dt><dd id="kept-count"></dd></div><div><dt>重复项</dt><dd id="removed-count"></dd></div><div><dt>合并文件夹</dt><dd id="merged-count"></dd></div><div><dt>未导入</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">查看</button></p>
+        <div class="preview-tabs" role="group" aria-label="预览"><button type="button" data-preview-view="retained" aria-pressed="true">保留</button><button type="button" data-preview-view="removed" aria-pressed="false">重复项</button><button type="button" data-preview-view="ignored" aria-pressed="false">未导入</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="预览"><table id="preview-table"><thead><tr><th scope="col">来源</th><th scope="col">文件夹</th><th scope="col">标题</th><th scope="col">网址</th><th scope="col">结果</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="上一页" title="上一页">←</button><button id="next" type="button" aria-label="下一页" title="下一页">→</button></div>
+        <details class="merge-tree"><summary>文件夹结构</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>预览前 200 个节点；下载包含全部内容。</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">保存结果</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>我已检查重复项和未导入项。</span></label>
+        <div id="export-output">
+          <p class="merge-hint">保留原始日期，可手动导入浏览器。</p>
+          <div class="merge-actions"><button id="download" class="button primary" type="button" disabled>下载 HTML</button></div>
+        </div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>合并报告</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="继续在 Chrome 中整理">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>合并文件已准备好</h3><p>导入 Chrome 后，用 Bookmark Nav 继续整理。</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">安装 Bookmark Nav</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="帮助">
+      <details id="html-help"><summary>导入 HTML</summary><div class="help-content"><p>在 Chrome 书签管理器中导入下载的 HTML。导入会新增书签，不会替换现有集合。请保留原始导出备份。</p><p>Chrome 会忽略空文件夹并重设文件夹日期；书签标题、网址和添加日期会保留。书签栏标记可能映射到原生书签栏。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hans" target="_blank" rel="noopener noreferrer">Chrome 导入说明</a></p></div></details>
+      <details id="rule-help"><summary>合并规则</summary><div class="help-content"><p>移除重复项时优先保留第一份文件的副本。网址精确匹配，参数、#片段、协议及 www 差异均保留。默认不移除不同文件夹内的同网址。</p><p>仅合并名称及父级路径相同的文件夹。关闭合并后，每份来源放入独立文件夹，同级重名加编号，并移除书签栏标记。</p></div></details>
+      <details id="format-help"><summary>格式与限制</summary><div class="help-content"><p>支持 UTF-8 Netscape 书签 HTML。每份上限：10 MiB、25,000 个书签和文件夹、64 层文件夹（不计外层列表）。不支持 JSON 或 plist。</p><p>下载包含完整层级、标题、受支持网址及已有 ADD_DATE / LAST_MODIFIED。不带入图标、描述、标签和同步信息。缺失或不支持的网址（含 javascript:、data:）列为未导入项，不检查链接是否有效。</p><p>合并结果可能超过输入上限，本工具不一定能再次读取；来源分隔文件夹会增加一层。请保留原始导出。</p></div></details>
+      <details id="privacy-help"><summary>隐私</summary><div class="help-content"><p>文件仅在当前标签页内存中处理，不上传、不用于分析。刷新或离开即清空；下载文件保存在你的设备上。</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="../">首页</a><a href="../privacy-policy">隐私</a></footer>
+</div>
+</body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Merge Bookmark HTML Files — Preview & Remove Duplicates | Bookmark Nav</title><meta name="description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="Merge Bookmark HTML Files — Preview & Remove Duplicates | Bookmark Nav"><meta property="og:description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="icon" href="images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style/base.css"><link rel="stylesheet" href="style/bookmark-merge.css">
+  <script type="module" src="scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="Navigation"><a href="./">Home</a><a href="help">Help</a><a href="zh-Hans/merge-bookmarks" lang="zh-Hans">简体中文</a></nav>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>Merge bookmark HTML</h1><p class="lead">Your files stay on this device.</p></section>
+    <noscript><p>JavaScript is required.</p></noscript>
+    <section class="merge-workspace" aria-label="Files">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">First file · preferred copy</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">No file selected</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">Second file</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">No file selected</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">Merge rules</legend>
+          <div class="option-row"><label for="duplicates">Duplicate URLs</label><select id="duplicates"><option value="same-folder">Same folder only</option><option value="everywhere">All folders</option><option value="keep-all">Keep all</option></select></div>
+          <label class="check-label" title="Same name and parent path"><input id="merge-folders" type="checkbox" checked><span>Merge matching folders</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>Preview merge</button><button class="button" id="sample" type="button">Sample files</button><button class="button" id="reset" type="button">Clear</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">Preview</h2>
+        <dl class="merge-stats"><div><dt>Kept</dt><dd id="kept-count"></dd></div><div><dt>Duplicates</dt><dd id="removed-count"></dd></div><div><dt>Folders merged</dt><dd id="merged-count"></dd></div><div><dt>Skipped</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">Review</button></p>
+        <div class="preview-tabs" role="group" aria-label="Preview"><button type="button" data-preview-view="retained" aria-pressed="true">Kept</button><button type="button" data-preview-view="removed" aria-pressed="false">Duplicates</button><button type="button" data-preview-view="ignored" aria-pressed="false">Skipped</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="Preview"><table id="preview-table"><thead><tr><th scope="col">Source</th><th scope="col">Folder</th><th scope="col">Title</th><th scope="col">URL</th><th scope="col">Result</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="Previous" title="Previous">←</button><button id="next" type="button" aria-label="Next" title="Next">→</button></div>
+        <details class="merge-tree"><summary>Folder outline</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>First 200 nodes; the download includes all entries.</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">Save result</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>I reviewed duplicates and skipped entries.</span></label>
+        <div id="export-output">
+          <p class="merge-hint">Original dates kept. Import the HTML into your browser.</p>
+          <div class="merge-actions"><button id="download" class="button primary" type="button" disabled>Download HTML</button></div>
+        </div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>Merge report</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="Continue in Chrome">
+        <img src="images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>Merged file ready</h3><p>Import it into Chrome, then organize it with Bookmark Nav.</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">Get Bookmark Nav</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="Help">
+      <details id="html-help"><summary>Importing the HTML</summary><div class="help-content"><p>Import the downloaded HTML in Chrome’s bookmark manager. This adds bookmarks, not replaces them. Keep your original exports as backups.</p><p>Chrome drops empty folders and resets folder dates. Bookmark titles, URLs and added dates are retained. Bookmark-bar markers may map to the native bookmark bar.</p><p><a href="https://support.google.com/chrome/answer/96816?hl=en" target="_blank" rel="noopener noreferrer">Chrome import instructions</a></p></div></details>
+      <details id="rule-help"><summary>Merge rules</summary><div class="help-content"><p>The first file wins when a duplicate is removed. URLs match exactly; parameters, #fragments, protocol and www differences stay distinct. By default, duplicate URLs in different folders are kept.</p><p>Folders merge only when the name and parent path match. With folder merging off, each source gets a separate folder; repeated sibling names get suffixes and bookmark-bar markers are removed.</p></div></details>
+      <details id="format-help"><summary>Format and limits</summary><div class="help-content"><p>UTF-8 Netscape bookmark HTML. Each file: up to 10 MiB, 25,000 bookmarks/folders and 64 folder levels, excluding the outer list. JSON and plist are not supported.</p><p>The download includes the full hierarchy, supported URLs, titles and available ADD_DATE / LAST_MODIFIED values. It excludes icons, descriptions, tags and sync metadata. Missing or unsupported URLs, including javascript: and data:, are listed as skipped. Links are not checked for availability.</p><p>A merged output can exceed the input limits and may not be readable again by this tool. Separate-source folders add one level. Keep your original exports.</p></div></details>
+      <details id="privacy-help"><summary>Privacy</summary><div class="help-content"><p>Files are processed in this tab’s memory, without uploads or analytics. Refreshing or leaving clears the loaded files. Downloads stay on your device.</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">Home</a><a href="privacy-policy">Privacy</a></footer>
+</div>
+</body></html>
