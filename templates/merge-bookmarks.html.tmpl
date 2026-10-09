@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{seoTitle}}</title><meta name="description" content="{{description}}">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="{{canonical}}">
+{{alternates}}
+  <meta property="og:title" content="{{seoTitle}}"><meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="website"><meta property="og:url" content="{{canonical}}">
+  <link rel="icon" href="{{prefix}}images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{prefix}}style/base.css"><link rel="stylesheet" href="{{prefix}}style/bookmark-merge.css">
+  <script type="module" src="{{prefix}}scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="{{navigation}}"><a href="./">{{home}}</a><a href="help">{{help}}</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">{{language}}</label><select id="merge-language" class="language-select" aria-label="{{language}}">{{languageOptions}}</select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>{{heading}}</h1><p class="lead">{{localFiles}}</p></section>
+    <noscript><p>{{javascript}}</p></noscript>
+    <section class="merge-workspace" aria-label="{{files}}">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">{{firstFile}}</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">{{choose}}</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">{{secondFile}}</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">{{choose}}</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">{{rules}}</legend>
+          <div class="option-row"><label for="duplicates">{{duplicateURLs}}</label><select id="duplicates"><option value="same-folder">{{sameFolder}}</option><option value="everywhere">{{allFolders}}</option><option value="keep-all">{{keepAll}}</option></select></div>
+          <label class="check-label" title="{{matchingPath}}"><input id="merge-folders" type="checkbox" checked><span>{{mergeFolders}}</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>{{previewMerge}}</button><button class="button" id="sample" type="button">{{sampleFiles}}</button><button class="button" id="reset" type="button">{{clear}}</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">{{preview}}</h2>
+        <dl class="merge-stats"><div><dt>{{kept}}</dt><dd id="kept-count"></dd></div><div><dt>{{duplicates}}</dt><dd id="removed-count"></dd></div><div><dt>{{foldersMerged}}</dt><dd id="merged-count"></dd></div><div><dt>{{skipped}}</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">{{review}}</button></p>
+        <div class="preview-tabs" role="group" aria-label="{{preview}}"><button type="button" data-preview-view="retained" aria-pressed="true">{{kept}}</button><button type="button" data-preview-view="removed" aria-pressed="false">{{duplicates}}</button><button type="button" data-preview-view="ignored" aria-pressed="false">{{skipped}}</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="{{preview}}"><table id="preview-table"><thead><tr><th scope="col">{{source}}</th><th scope="col">{{folder}}</th><th scope="col">{{title}}</th><th scope="col">URL</th><th scope="col">{{result}}</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="{{previous}}" title="{{previous}}">←</button><button id="next" type="button" aria-label="{{next}}" title="{{next}}">→</button></div>
+        <details class="merge-tree"><summary>{{outline}}</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>{{treeLimit}}</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">{{saveResult}}</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>{{reviewConfirm}}</span></label>
+        <div id="export-output"><p class="merge-hint">{{originalDates}}</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>{{downloadHTML}}</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>{{report}}</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="{{continueChrome}}">
+        <img src="{{prefix}}images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>{{fileReady}}</h3><p>{{organize}}</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">{{getExtension}}</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="{{help}}">
+      <details id="html-help"><summary>{{importHTML}}</summary><div class="help-content"><p>{{importHelp}}</p><p>{{chromeLimits}}</p><p><a href="https://support.google.com/chrome/answer/96816?hl={{helpLanguage}}" target="_blank" rel="noopener noreferrer">{{chromeInstructions}}</a></p></div></details>
+      <details id="rule-help"><summary>{{rules}}</summary><div class="help-content"><p>{{duplicateHelp}}</p><p>{{folderHelp}}</p></div></details>
+      <details id="format-help"><summary>{{format}}</summary><div class="help-content"><p>{{limitsHelp}}</p><p>{{exportHelp}}</p><p>{{largeOutput}}</p></div></details>
+      <details id="privacy-help"><summary>{{privacy}}</summary><div class="help-content"><p>{{privacyHelp}}</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">{{home}}</a><a href="privacy-policy">{{privacy}}</a></footer>
+</div>
+</body></html>

@@ -132,4 +132,22 @@
   <url>
     <loc>https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks</loc>
   </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks</loc>
+  </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/ja/merge-bookmarks</loc>
+  </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/ko/merge-bookmarks</loc>
+  </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks</loc>
+  </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks</loc>
+  </url>
+  <url>
+    <loc>https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks</loc>
+  </url>
 </urlset>

@@ -1,48 +1,17 @@
+import { mergeTranslation, formatMessage } from './bookmark-merge-i18n.mjs';
+
 import { LIMITS, parseBookmarkHTML, mergeBookmarks, exportBookmarkHTML } from './bookmark-merge-core.mjs';
 
-const zh = document.documentElement.lang.startsWith('zh');
-const strings = zh ? {
-  emptyFile: '文件为空，请选择浏览器导出的书签 HTML。', largeFile: '每个文件不能超过 10 MiB。',
-  manyEntries: '每个文件最多支持 25,000 个书签及文件夹。', deepFile: '文件夹层级超过支持范围（64 层）。',
-  invalidFile: '无法读取书签结构。请重新从浏览器导出 Netscape 格式的书签 HTML。',
-  encoding: '目前仅支持 UTF-8，请用当前浏览器重新导出这份书签。',
-  unsupportedURL: '缺失、无效或不支持的 URL（含 javascript: / data:）',
-  choose: '尚未选择文件', reading: '正在读取…', ready: '可以预览',
-  bookmarks: '个书签', folders: '个文件夹', ignored: '个未导入项',
-  loaded: '两份文件已就绪。', needFiles: '选择两份导出文件，或试用示例。',
-  previewReady: '预览已生成，请检查重复项和未导入项。',
-  changed: '设置或文件已变更，请重新生成预览。', reviewed: '预览已确认。',
-  kept: '保留', removed: '移除重复项', skipped: '未导入',
-  root: '根目录', noneRemoved: '当前规则没有移除任何书签。', noneIgnored: '没有未导入项。',
-  emptyResult: '结果没有可导出的书签；请检查输入文件与未导入项。',
-  skippedWarning: n => `${n} 个条目不会导入。`,
-  sample: '示例已加载。',
-  showing: (start, end, total) => `显示 ${start}–${end} / ${total} 项`,
-  keptAt: entry => `保留自 ${entry.source} · ${entry.path.join(' / ') || '根目录'}`,
-  readAt: (n, f, i) => `${n} 个书签 · ${f} 个文件夹${i ? ` · ${i} 个未导入项` : ''}`,
-  download: '已生成下载文件。原始文件与浏览器书签未被修改。',
-} : {
-  emptyFile: 'This file is empty. Choose a browser bookmark HTML export.', largeFile: 'Each file must be 10 MiB or smaller.',
-  manyEntries: 'Each file can contain up to 25,000 bookmarks and folders.', deepFile: 'This file exceeds the supported folder depth (64 levels).',
-  invalidFile: 'The bookmark structure could not be read. Re-export your bookmarks in Netscape HTML format.',
-  encoding: 'Only UTF-8 exports are supported. Re-export this file with a current browser.',
-  unsupportedURL: 'Missing, invalid or unsupported URL (including javascript: / data:)',
-  choose: 'No file selected', reading: 'Reading…', ready: 'Ready to preview',
-  bookmarks: 'bookmarks', folders: 'folders', ignored: 'skipped entries',
-  loaded: 'Both files ready.', needFiles: 'Choose two exports, or try the sample files.',
-  previewReady: 'Preview ready. Review duplicates and skipped entries.',
-  changed: 'Files or options changed. Generate a new preview.', reviewed: 'Preview confirmed.',
-  kept: 'Kept', removed: 'Duplicate removed', skipped: 'Skipped',
-  root: 'Root', noneRemoved: 'No bookmarks were removed with these options.', noneIgnored: 'No entries were skipped.',
-  emptyResult: 'There are no bookmarks to export. Check your files and skipped entries.',
-  skippedWarning: n => `${n} entries will not be imported.`,
-  sample: 'Samples loaded.',
-  showing: (start, end, total) => `Showing ${start}–${end} of ${total} entries`,
-  keptAt: entry => `Kept from ${entry.source} · ${entry.path.join(' / ') || 'Root'}`,
-  readAt: (n, f, i) => `${n} bookmarks · ${f} folders${i ? ` · ${i} skipped entries` : ''}`,
-  download: 'Download created. Your original files and browser bookmarks were not changed.',
+const translated = mergeTranslation(document.documentElement.lang).messages;
+const strings = {
+  ...translated,
+  skippedWarning: n => formatMessage(translated.skippedWarning, { n }),
+  showing: (start, end, total) => formatMessage(translated.showing, { start, end, total }),
+  keptAt: entry => formatMessage(translated.keptAt, { source: entry.source, path: entry.path.join(' / ') || translated.root }),
+  readAt: (n, f, i) => formatMessage(translated.readAt, { n, f, ignoredPart: i ? formatMessage(translated.ignoredPart, { i }) : '' }),
 };
 const $ = id => document.getElementById(id);
+$('merge-language').addEventListener('change', event => { window.location.href = event.target.value; });
 const state = { files: [null, null], versions: [0, 0], loading: [false, false], plan: null, page: 0, view: 'retained' };
 export function currentMergePlan() { return state.plan; }
 const decoder = document.createElement('textarea');

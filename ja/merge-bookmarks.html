@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ブックマーク HTML を結合：プレビュー・重複削除・エクスポート | Bookmark Nav</title><meta name="description" content="2 つのブックマーク HTML を端末内で結合。重複 URL とフォルダの変更を確認し、ブラウザにインポートするファイルをダウンロードできます。">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="ブックマーク HTML を結合：プレビュー・重複削除・エクスポート | Bookmark Nav"><meta property="og:description" content="2 つのブックマーク HTML を端末内で結合。重複 URL とフォルダの変更を確認し、ブラウザにインポートするファイルをダウンロードできます。">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="ナビゲーション"><a href="./">ホーム</a><a href="help">ヘルプ</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">言語</label><select id="merge-language" class="language-select" aria-label="言語"><option value="/merge-bookmarks">English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks">繁體中文</option><option value="/ja/merge-bookmarks" selected>日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks">Deutsch</option><option value="/fr-FR/merge-bookmarks">Français</option><option value="/es-ES/merge-bookmarks">Español</option></select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>ブックマーク HTML を結合</h1><p class="lead">ファイルは端末内に留まります。</p></section>
+    <noscript><p>JavaScript が必要です。</p></noscript>
+    <section class="merge-workspace" aria-label="ファイル">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">最初のファイル · 優先するコピー</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">ファイル未選択</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">2 つ目のファイル</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">ファイル未選択</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">結合ルール</legend>
+          <div class="option-row"><label for="duplicates">重複 URL</label><select id="duplicates"><option value="same-folder">同じフォルダのみ</option><option value="everywhere">すべてのフォルダ</option><option value="keep-all">すべて保持</option></select></div>
+          <label class="check-label" title="名前と親のパスが同じフォルダのみ"><input id="merge-folders" type="checkbox" checked><span>一致するフォルダを結合</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>結合をプレビュー</button><button class="button" id="sample" type="button">サンプル</button><button class="button" id="reset" type="button">クリア</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">プレビュー</h2>
+        <dl class="merge-stats"><div><dt>保持</dt><dd id="kept-count"></dd></div><div><dt>重複</dt><dd id="removed-count"></dd></div><div><dt>結合フォルダ</dt><dd id="merged-count"></dd></div><div><dt>除外</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">確認</button></p>
+        <div class="preview-tabs" role="group" aria-label="プレビュー"><button type="button" data-preview-view="retained" aria-pressed="true">保持</button><button type="button" data-preview-view="removed" aria-pressed="false">重複</button><button type="button" data-preview-view="ignored" aria-pressed="false">除外</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="プレビュー"><table id="preview-table"><thead><tr><th scope="col">元ファイル</th><th scope="col">フォルダ</th><th scope="col">タイトル</th><th scope="col">URL</th><th scope="col">結果</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="前へ" title="前へ">←</button><button id="next" type="button" aria-label="次へ" title="次へ">→</button></div>
+        <details class="merge-tree"><summary>フォルダ構成</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>最初の 200 ノードを表示。ダウンロードには全項目が含まれます。</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">結果を保存</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>重複と除外項目を確認しました。</span></label>
+        <div id="export-output"><p class="merge-hint">元の日付を保持。HTML をブラウザにインポートできます。</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>HTML をダウンロード</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>結合レポート</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="Chrome で続ける">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>結合ファイルの準備完了</h3><p>Chrome にインポートした後、Bookmark Nav で整理できます。</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">Bookmark Nav を入手</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="ヘルプ">
+      <details id="html-help"><summary>HTML のインポート</summary><div class="help-content"><p>Chrome のブックマーク マネージャでダウンロードした HTML をインポートします。既存のブックマークを置き換えず、追加します。元のエクスポートをバックアップとして保持してください。</p><p>Chrome は空のフォルダを除外し、フォルダの日付を再設定します。ブックマークのタイトル、URL、追加日は保持します。ブックマークバーのマーカーはブラウザのバーに対応する場合があります。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=ja" target="_blank" rel="noopener noreferrer">Chrome のインポート手順</a></p></div></details>
+      <details id="rule-help"><summary>結合ルール</summary><div class="help-content"><p>重複を削除する場合は最初のファイルを優先します。URL は完全一致で比較し、パラメータ、#フラグメント、プロトコル、www の違いを保持します。既定では異なるフォルダの同一 URL を保持します。</p><p>名前と親のパスが一致するフォルダのみ結合します。結合をオフにすると元ファイルごとにフォルダを作り、同じ階層の同名フォルダに番号を付け、ブックマークバーのマーカーを除去します。</p></div></details>
+      <details id="format-help"><summary>形式と制限</summary><div class="help-content"><p>UTF-8 Netscape ブックマーク HTML。各ファイルは最大 10 MiB、25,000 ブックマーク／フォルダ、64 フォルダ階層（外側のリストを除く）。JSON と plist は未対応です。</p><p>ダウンロードには全階層、対応 URL、タイトル、利用可能な ADD_DATE / LAST_MODIFIED を含みます。アイコン、説明、タグ、同期情報は含みません。欠落または未対応の URL（javascript:、data: を含む）は除外として表示します。リンクの有効性は確認しません。</p><p>結合結果が入力制限を超えると、このツールで再読込できない場合があります。元ファイル別のフォルダは階層を 1 つ増やします。元のエクスポートを保持してください。</p></div></details>
+      <details id="privacy-help"><summary>プライバシー</summary><div class="help-content"><p>ファイルはこのタブのメモリ内で処理し、アップロードや分析には使用しません。再読込やページ移動で消去されます。ダウンロードは端末に保存されます。</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">ホーム</a><a href="privacy-policy">プライバシー</a></footer>
+</div>
+</body></html>

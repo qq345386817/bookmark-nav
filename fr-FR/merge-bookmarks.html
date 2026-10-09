@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fusionner des favoris HTML : aperçu et suppression des doublons | Bookmark Nav</title><meta name="description" content="Fusionnez localement deux exports HTML de favoris. Vérifiez les URL en double et les dossiers, puis téléchargez le fichier à importer dans votre navigateur.">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="Fusionner des favoris HTML : aperçu et suppression des doublons | Bookmark Nav"><meta property="og:description" content="Fusionnez localement deux exports HTML de favoris. Vérifiez les URL en double et les dossiers, puis téléchargez le fichier à importer dans votre navigateur.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="Navigation"><a href="./">Accueil</a><a href="help">Aide</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">Langue</label><select id="merge-language" class="language-select" aria-label="Langue"><option value="/merge-bookmarks">English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks">繁體中文</option><option value="/ja/merge-bookmarks">日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks">Deutsch</option><option value="/fr-FR/merge-bookmarks" selected>Français</option><option value="/es-ES/merge-bookmarks">Español</option></select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>Fusionner des favoris HTML</h1><p class="lead">Vos fichiers restent sur cet appareil.</p></section>
+    <noscript><p>JavaScript est nécessaire.</p></noscript>
+    <section class="merge-workspace" aria-label="Fichiers">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">Premier fichier · copie prioritaire</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">Aucun fichier choisi</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">Deuxième fichier</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">Aucun fichier choisi</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">Règles de fusion</legend>
+          <div class="option-row"><label for="duplicates">URL en double</label><select id="duplicates"><option value="same-folder">Même dossier seulement</option><option value="everywhere">Tous les dossiers</option><option value="keep-all">Tout conserver</option></select></div>
+          <label class="check-label" title="Même nom et chemin parent"><input id="merge-folders" type="checkbox" checked><span>Fusionner les dossiers identiques</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>Aperçu de la fusion</button><button class="button" id="sample" type="button">Exemples</button><button class="button" id="reset" type="button">Effacer</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">Aperçu</h2>
+        <dl class="merge-stats"><div><dt>Conservés</dt><dd id="kept-count"></dd></div><div><dt>Doublons</dt><dd id="removed-count"></dd></div><div><dt>Dossiers fusionnés</dt><dd id="merged-count"></dd></div><div><dt>Ignorés</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">Vérifier</button></p>
+        <div class="preview-tabs" role="group" aria-label="Aperçu"><button type="button" data-preview-view="retained" aria-pressed="true">Conservés</button><button type="button" data-preview-view="removed" aria-pressed="false">Doublons</button><button type="button" data-preview-view="ignored" aria-pressed="false">Ignorés</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="Aperçu"><table id="preview-table"><thead><tr><th scope="col">Source</th><th scope="col">Dossier</th><th scope="col">Titre</th><th scope="col">URL</th><th scope="col">Résultat</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="Précédent" title="Précédent">←</button><button id="next" type="button" aria-label="Suivant" title="Suivant">→</button></div>
+        <details class="merge-tree"><summary>Structure des dossiers</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>200 premiers éléments ; le téléchargement contient tous les éléments.</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">Enregistrer le résultat</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>J’ai vérifié les doublons et les éléments ignorés.</span></label>
+        <div id="export-output"><p class="merge-hint">Dates originales conservées. Importez le HTML dans votre navigateur.</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>Télécharger le HTML</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>Rapport de fusion</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="Continuer dans Chrome">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>Fichier fusionné prêt</h3><p>Importez-le dans Chrome, puis organisez-le avec Bookmark Nav.</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">Installer Bookmark Nav</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="Aide">
+      <details id="html-help"><summary>Importer le HTML</summary><div class="help-content"><p>Importez le HTML téléchargé dans le gestionnaire de favoris Chrome. Les favoris sont ajoutés, pas remplacés. Gardez les exports originaux comme sauvegardes.</p><p>Chrome ignore les dossiers vides et réinitialise leurs dates. Les titres, URL et dates d’ajout des favoris sont conservés. Les marqueurs de barre peuvent correspondre à la barre de favoris du navigateur.</p><p><a href="https://support.google.com/chrome/answer/96816?hl=fr" target="_blank" rel="noopener noreferrer">Instructions d’importation Chrome</a></p></div></details>
+      <details id="rule-help"><summary>Règles de fusion</summary><div class="help-content"><p>Le premier fichier est prioritaire lors de la suppression d’un doublon. Les URL sont comparées exactement ; paramètres, #fragments, protocoles et www restent distincts. Les mêmes URL dans des dossiers différents sont conservées par défaut.</p><p>Les dossiers ne fusionnent que si leur nom et chemin parent correspondent. Sans fusion, chaque source a son dossier ; les noms identiques au même niveau reçoivent un suffixe et les marqueurs de barre sont retirés.</p></div></details>
+      <details id="format-help"><summary>Format et limites</summary><div class="help-content"><p>HTML de favoris Netscape en UTF-8. Par fichier : jusqu’à 10 MiB, 25,000 favoris/dossiers et 64 niveaux, hors liste externe. JSON et plist ne sont pas pris en charge.</p><p>Le téléchargement inclut toute la hiérarchie, les URL prises en charge, les titres et les valeurs ADD_DATE / LAST_MODIFIED disponibles. Icônes, descriptions, étiquettes et données de synchronisation sont exclues. Les URL absentes ou non prises en charge, dont javascript: et data:, sont signalées comme ignorées. La disponibilité des liens n’est pas vérifiée.</p><p>Le résultat peut dépasser les limites d’entrée et ne plus être lisible par cet outil. Les dossiers séparés ajoutent un niveau. Gardez vos exports originaux.</p></div></details>
+      <details id="privacy-help"><summary>Confidentialité</summary><div class="help-content"><p>Les fichiers sont traités dans la mémoire de cet onglet, sans envoi ni analyse. Actualiser ou quitter efface les fichiers chargés. Les téléchargements restent sur votre appareil.</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">Accueil</a><a href="privacy-policy">Confidentialité</a></footer>
+</div>
+</body></html>

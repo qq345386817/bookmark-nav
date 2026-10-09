@@ -1,6 +1,6 @@
 .merge-page { max-width: 1120px; }
 .merge-page .page-hero { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 24px; padding: 24px 0 20px; }
-.merge-page .page-hero h1 { font-size: 28px; margin: 0; }
+.merge-page .page-hero h1 { font-size: 28px; margin: 0; overflow-wrap: anywhere; }
 .merge-page .lead { font-size: 14px; color: var(--muted); margin: 0; }
 .merge-workspace { padding: 22px 0; border-block: 1px solid var(--line); }
 .merge-files { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -31,7 +31,7 @@
 .merge-review { min-width: 0; }
 .merge-result h2 { font-size: 18px; margin: 0 0 16px; }
 .merge-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding-bottom: 16px; margin: 0 0 16px; border-bottom: 1px solid var(--line); }
-.merge-stats dt { color: var(--muted); font-size: 12px; }
+.merge-stats dt { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
 .merge-stats dd { font-size: 23px; font-weight: 750; font-variant-numeric: tabular-nums; margin: 4px 0 0; }
 .merge-alert { font-size: 13px; color: #b52a24; margin: 0 0 14px; }
 .merge-alert button { color: inherit; border: 0; background: transparent; text-decoration: underline; padding: 2px; }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>合併書籤 HTML 檔案：預覽、去重與匯出 | Bookmark Nav</title><meta name="description" content="在本機合併兩份書籤 HTML 匯出，預覽重複網址與資料夾變更，再下載合併檔案匯入瀏覽器。">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="合併書籤 HTML 檔案：預覽、去重與匯出 | Bookmark Nav"><meta property="og:description" content="在本機合併兩份書籤 HTML 匯出，預覽重複網址與資料夾變更，再下載合併檔案匯入瀏覽器。">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="導覽"><a href="./">首頁</a><a href="help">說明</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">語言</label><select id="merge-language" class="language-select" aria-label="語言"><option value="/merge-bookmarks">English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks" selected>繁體中文</option><option value="/ja/merge-bookmarks">日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks">Deutsch</option><option value="/fr-FR/merge-bookmarks">Français</option><option value="/es-ES/merge-bookmarks">Español</option></select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>合併書籤 HTML</h1><p class="lead">檔案留在本機，不上傳。</p></section>
+    <noscript><p>需要啟用 JavaScript。</p></noscript>
+    <section class="merge-workspace" aria-label="檔案">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">第一份檔案 · 優先副本</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">尚未選擇檔案</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">第二份檔案</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">尚未選擇檔案</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">合併規則</legend>
+          <div class="option-row"><label for="duplicates">重複網址</label><select id="duplicates"><option value="same-folder">僅同資料夾</option><option value="everywhere">所有資料夾</option><option value="keep-all">全部保留</option></select></div>
+          <label class="check-label" title="僅合併名稱與上層路徑相同的資料夾"><input id="merge-folders" type="checkbox" checked><span>合併同名資料夾</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>預覽合併</button><button class="button" id="sample" type="button">範例檔案</button><button class="button" id="reset" type="button">清除</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">預覽</h2>
+        <dl class="merge-stats"><div><dt>保留</dt><dd id="kept-count"></dd></div><div><dt>重複項目</dt><dd id="removed-count"></dd></div><div><dt>合併資料夾</dt><dd id="merged-count"></dd></div><div><dt>略過</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">檢查</button></p>
+        <div class="preview-tabs" role="group" aria-label="預覽"><button type="button" data-preview-view="retained" aria-pressed="true">保留</button><button type="button" data-preview-view="removed" aria-pressed="false">重複項目</button><button type="button" data-preview-view="ignored" aria-pressed="false">略過</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="預覽"><table id="preview-table"><thead><tr><th scope="col">來源</th><th scope="col">資料夾</th><th scope="col">標題</th><th scope="col">URL</th><th scope="col">結果</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="上一頁" title="上一頁">←</button><button id="next" type="button" aria-label="下一頁" title="下一頁">→</button></div>
+        <details class="merge-tree"><summary>資料夾結構</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>僅顯示前 200 個節點，下載包含全部內容。</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">儲存結果</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>我已檢查重複與略過項目。</span></label>
+        <div id="export-output"><p class="merge-hint">保留原始日期，可手動匯入瀏覽器。</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>下載 HTML</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>合併報告</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="在 Chrome 中繼續">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>合併檔案已就緒</h3><p>匯入 Chrome 後，可用 Bookmark Nav 繼續整理。</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">取得 Bookmark Nav</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="說明">
+      <details id="html-help"><summary>匯入 HTML</summary><div class="help-content"><p>在 Chrome 書籤管理員中匯入下載的 HTML。這是新增書籤，不是取代。請保留原始匯出作為備份。</p><p>Chrome 會略過空資料夾並重設資料夾日期，保留書籤標題、網址與新增日期。書籤列標記可能對應至瀏覽器書籤列。</p><p><a href="https://support.google.com/chrome/answer/96816?hl=zh-Hant" target="_blank" rel="noopener noreferrer">Chrome 匯入說明</a></p></div></details>
+      <details id="rule-help"><summary>合併規則</summary><div class="help-content"><p>移除重複項目時優先保留第一份檔案。網址精確比對，參數、#片段、通訊協定與 www 差異均保留。預設保留不同資料夾中的相同網址。</p><p>僅合併名稱與上層路徑相同的資料夾。關閉合併時，每份來源放入獨立資料夾，同層重名加上編號，並移除書籤列標記。</p></div></details>
+      <details id="format-help"><summary>格式與限制</summary><div class="help-content"><p>UTF-8 Netscape 書籤 HTML。每份最多 10 MiB、25,000 個書籤與資料夾、64 層資料夾（不計外層清單）。不支援 JSON 與 plist。</p><p>下載保留完整階層、支援的網址、標題及可用的 ADD_DATE / LAST_MODIFIED 日期。不包含圖示、描述、標籤與同步資訊。缺少或不支援的網址（含 javascript: 與 data:）列為略過項目，不檢查連結是否失效。</p><p>合併結果可能超過輸入限制，無法再用本工具讀取。獨立來源資料夾增加一層。請保留原始匯出。</p></div></details>
+      <details id="privacy-help"><summary>隱私</summary><div class="help-content"><p>檔案僅在目前分頁的記憶體中處理，不上傳、不用於分析；重新整理或離開會清除已載入檔案。下載留在你的裝置上。</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">首頁</a><a href="privacy-policy">隱私</a></footer>
+</div>
+</body></html>

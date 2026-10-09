@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesezeichen-HTML zusammenführen: Vorschau und Duplikate | Bookmark Nav</title><meta name="description" content="Zwei Lesezeichen-HTML-Dateien lokal zusammenführen. Doppelte URLs und Ordneränderungen prüfen und eine gemeinsame Datei zum Browserimport herunterladen.">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="Lesezeichen-HTML zusammenführen: Vorschau und Duplikate | Bookmark Nav"><meta property="og:description" content="Zwei Lesezeichen-HTML-Dateien lokal zusammenführen. Doppelte URLs und Ordneränderungen prüfen und eine gemeinsame Datei zum Browserimport herunterladen.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="Navigation"><a href="./">Startseite</a><a href="help">Hilfe</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">Sprache</label><select id="merge-language" class="language-select" aria-label="Sprache"><option value="/merge-bookmarks">English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks">繁體中文</option><option value="/ja/merge-bookmarks">日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks" selected>Deutsch</option><option value="/fr-FR/merge-bookmarks">Français</option><option value="/es-ES/merge-bookmarks">Español</option></select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>Lesezeichen-HTML zusammenführen</h1><p class="lead">Dateien bleiben auf diesem Gerät.</p></section>
+    <noscript><p>JavaScript ist erforderlich.</p></noscript>
+    <section class="merge-workspace" aria-label="Dateien">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">Erste Datei · bevorzugte Kopie</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">Keine Datei ausgewählt</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">Zweite Datei</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">Keine Datei ausgewählt</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">Zusammenführungsregeln</legend>
+          <div class="option-row"><label for="duplicates">Doppelte URLs</label><select id="duplicates"><option value="same-folder">Nur im selben Ordner</option><option value="everywhere">Alle Ordner</option><option value="keep-all">Alle behalten</option></select></div>
+          <label class="check-label" title="Gleicher Name und übergeordneter Pfad"><input id="merge-folders" type="checkbox" checked><span>Passende Ordner zusammenführen</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>Vorschau erstellen</button><button class="button" id="sample" type="button">Beispieldateien</button><button class="button" id="reset" type="button">Leeren</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">Vorschau</h2>
+        <dl class="merge-stats"><div><dt>Behalten</dt><dd id="kept-count"></dd></div><div><dt>Duplikate</dt><dd id="removed-count"></dd></div><div><dt>Vereinte Ordner</dt><dd id="merged-count"></dd></div><div><dt>Übersprungen</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">Prüfen</button></p>
+        <div class="preview-tabs" role="group" aria-label="Vorschau"><button type="button" data-preview-view="retained" aria-pressed="true">Behalten</button><button type="button" data-preview-view="removed" aria-pressed="false">Duplikate</button><button type="button" data-preview-view="ignored" aria-pressed="false">Übersprungen</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="Vorschau"><table id="preview-table"><thead><tr><th scope="col">Quelle</th><th scope="col">Ordner</th><th scope="col">Titel</th><th scope="col">URL</th><th scope="col">Ergebnis</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="Zurück" title="Zurück">←</button><button id="next" type="button" aria-label="Weiter" title="Weiter">→</button></div>
+        <details class="merge-tree"><summary>Ordnerstruktur</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>Erste 200 Knoten; der Download enthält alle Einträge.</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">Ergebnis speichern</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>Ich habe Duplikate und übersprungene Einträge geprüft.</span></label>
+        <div id="export-output"><p class="merge-hint">Originaldaten bleiben erhalten. HTML im Browser importieren.</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>HTML herunterladen</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>Zusammenführungsbericht</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="In Chrome fortfahren">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>Zusammengeführte Datei bereit</h3><p>In Chrome importieren und mit Bookmark Nav weiter organisieren.</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">Bookmark Nav installieren</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="Hilfe">
+      <details id="html-help"><summary>HTML importieren</summary><div class="help-content"><p>Die heruntergeladene HTML-Datei im Chrome-Lesezeichenmanager importieren. Lesezeichen werden hinzugefügt, nicht ersetzt. Originalexporte als Sicherung behalten.</p><p>Chrome verwirft leere Ordner und setzt Ordnerdaten neu. Titel, URLs und Hinzufügedaten der Lesezeichen bleiben erhalten. Markierungen können der Lesezeichenleiste zugeordnet werden.</p><p><a href="https://support.google.com/chrome/answer/96816?hl=de" target="_blank" rel="noopener noreferrer">Chrome-Importanleitung</a></p></div></details>
+      <details id="rule-help"><summary>Zusammenführungsregeln</summary><div class="help-content"><p>Beim Entfernen von Duplikaten hat die erste Datei Vorrang. URLs müssen exakt übereinstimmen; Parameter, #Fragmente, Protokoll und www bleiben unterschiedlich. Gleiche URLs in verschiedenen Ordnern bleiben standardmäßig erhalten.</p><p>Ordner werden nur bei gleichem Namen und übergeordnetem Pfad vereint. Ohne Ordnerzusammenführung bekommt jede Quelle einen eigenen Ordner; gleichnamige Geschwister werden nummeriert und Leistenmarkierungen entfernt.</p></div></details>
+      <details id="format-help"><summary>Format und Grenzen</summary><div class="help-content"><p>UTF-8-Netscape-Lesezeichen-HTML. Je Datei: maximal 10 MiB, 25,000 Lesezeichen/Ordner und 64 Ordnerebenen ohne äußere Liste. JSON und plist werden nicht unterstützt.</p><p>Der Download enthält die gesamte Hierarchie, unterstützte URLs, Titel sowie vorhandene ADD_DATE / LAST_MODIFIED-Werte. Symbole, Beschreibungen, Tags und Synchronisationsdaten fehlen. Fehlende oder nicht unterstützte URLs, einschließlich javascript: und data:, werden als übersprungen aufgeführt. Links werden nicht auf Erreichbarkeit geprüft.</p><p>Das Ergebnis kann die Eingabegrenzen überschreiten und lässt sich dann möglicherweise nicht erneut einlesen. Separate Quellordner fügen eine Ebene hinzu. Originalexporte behalten.</p></div></details>
+      <details id="privacy-help"><summary>Datenschutz</summary><div class="help-content"><p>Dateien werden nur im Speicher dieses Tabs verarbeitet, ohne Upload oder Analyse. Neuladen oder Verlassen löscht geladene Dateien. Downloads bleiben auf deinem Gerät.</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">Startseite</a><a href="privacy-policy">Datenschutz</a></footer>
+</div>
+</body></html>

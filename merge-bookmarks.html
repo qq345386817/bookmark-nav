@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Merge Bookmark HTML Files — Preview & Remove Duplicates | Bookmark Nav</title><meta name="description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
+  <title>Merge Bookmark HTML Files — Preview &amp; Remove Duplicates | Bookmark Nav</title><meta name="description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
   <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <link rel="canonical" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
   <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
-  <meta property="og:title" content="Merge Bookmark HTML Files — Preview & Remove Duplicates | Bookmark Nav"><meta property="og:description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
+  <meta property="og:title" content="Merge Bookmark HTML Files — Preview &amp; Remove Duplicates | Bookmark Nav"><meta property="og:description" content="Merge two bookmark HTML exports locally. Preview duplicate URLs and folder changes, then download a combined file for import into your browser.">
   <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/merge-bookmarks">
   <link rel="icon" href="images/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style/base.css"><link rel="stylesheet" href="style/bookmark-merge.css">
@@ -19,7 +25,8 @@
 <div class="page-shell">
   <header class="site-header">
     <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
-    <nav class="site-nav" aria-label="Navigation"><a href="./">Home</a><a href="help">Help</a><a href="zh-Hans/merge-bookmarks" lang="zh-Hans">简体中文</a></nav>
+    <nav class="site-nav" aria-label="Navigation"><a href="./">Home</a><a href="help">Help</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">Language</label><select id="merge-language" class="language-select" aria-label="Language"><option value="/merge-bookmarks" selected>English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks">繁體中文</option><option value="/ja/merge-bookmarks">日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks">Deutsch</option><option value="/fr-FR/merge-bookmarks">Français</option><option value="/es-ES/merge-bookmarks">Español</option></select></div>
   </header>
   <main class="content-page merge-page">
     <section class="page-hero"><h1>Merge bookmark HTML</h1><p class="lead">Your files stay on this device.</p></section>
@@ -52,10 +59,7 @@
       <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
         <h2 id="delivery-title">Save result</h2>
         <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>I reviewed duplicates and skipped entries.</span></label>
-        <div id="export-output">
-          <p class="merge-hint">Original dates kept. Import the HTML into your browser.</p>
-          <div class="merge-actions"><button id="download" class="button primary" type="button" disabled>Download HTML</button></div>
-        </div>
+        <div id="export-output"><p class="merge-hint">Original dates kept. Import the HTML into your browser.</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>Download HTML</button></div></div>
         <div class="merge-report"><button id="report" class="report-button" type="button" disabled>Merge report</button></div>
       </section>
       <aside id="extension-next-step" class="merge-next-step" hidden aria-label="Continue in Chrome">

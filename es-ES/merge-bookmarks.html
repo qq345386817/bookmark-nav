@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Combinar marcadores HTML: vista previa y eliminar duplicados | Bookmark Nav</title><meta name="description" content="Combina dos archivos HTML de marcadores localmente. Revisa URL duplicadas y cambios de carpetas, y descarga un archivo para importarlo en tu navegador.">
+  <meta name="robots" content="index,follow"><meta name="theme-color" content="#0d5c85">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="canonical" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="en" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hans" href="https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks">
+  <link rel="alternate" hreflang="zh-Hant" href="https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks">
+  <link rel="alternate" hreflang="ja" href="https://bookmark-nav.luopeike.com/ja/merge-bookmarks">
+  <link rel="alternate" hreflang="ko" href="https://bookmark-nav.luopeike.com/ko/merge-bookmarks">
+  <link rel="alternate" hreflang="de" href="https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks">
+  <link rel="alternate" hreflang="fr" href="https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks">
+  <link rel="alternate" hreflang="es" href="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="alternate" hreflang="x-default" href="https://bookmark-nav.luopeike.com/merge-bookmarks">
+  <meta property="og:title" content="Combinar marcadores HTML: vista previa y eliminar duplicados | Bookmark Nav"><meta property="og:description" content="Combina dos archivos HTML de marcadores localmente. Revisa URL duplicadas y cambios de carpetas, y descarga un archivo para importarlo en tu navegador.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks">
+  <link rel="icon" href="../images/app-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style/base.css"><link rel="stylesheet" href="../style/bookmark-merge.css">
+  <script type="module" src="../scripts/bookmark-merge.mjs"></script>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Bookmark Nav</span></a>
+    <nav class="site-nav" aria-label="Navegación"><a href="./">Inicio</a><a href="help">Ayuda</a></nav>
+    <div class="language-picker topbar-language"><label class="sr-only" for="merge-language">Idioma</label><select id="merge-language" class="language-select" aria-label="Idioma"><option value="/merge-bookmarks">English</option><option value="/zh-Hans/merge-bookmarks">简体中文</option><option value="/zh-Hant/merge-bookmarks">繁體中文</option><option value="/ja/merge-bookmarks">日本語</option><option value="/ko/merge-bookmarks">한국어</option><option value="/de-DE/merge-bookmarks">Deutsch</option><option value="/fr-FR/merge-bookmarks">Français</option><option value="/es-ES/merge-bookmarks" selected>Español</option></select></div>
+  </header>
+  <main class="content-page merge-page">
+    <section class="page-hero"><h1>Combinar marcadores HTML</h1><p class="lead">Los archivos permanecen en tu dispositivo.</p></section>
+    <noscript><p>Se necesita JavaScript.</p></noscript>
+    <section class="merge-workspace" aria-label="Archivos">
+      <div class="merge-files">
+        <div class="merge-file"><label for="file-0">Primer archivo · copia prioritaria</label><input id="file-0" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-0 file-error-0"><p class="file-status" id="file-status-0">Ningún archivo seleccionado</p><p class="file-error" id="file-error-0" role="alert"></p></div>
+        <div class="merge-file"><label for="file-1">Segundo archivo</label><input id="file-1" type="file" accept=".html,.htm,text/html" aria-describedby="file-status-1 file-error-1"><p class="file-status" id="file-status-1">Ningún archivo seleccionado</p><p class="file-error" id="file-error-1" role="alert"></p></div>
+      </div>
+      <div class="merge-input-toolbar">
+        <fieldset class="merge-options"><legend class="sr-only">Reglas de combinación</legend>
+          <div class="option-row"><label for="duplicates">URL duplicadas</label><select id="duplicates"><option value="same-folder">Solo la misma carpeta</option><option value="everywhere">Todas las carpetas</option><option value="keep-all">Conservar todo</option></select></div>
+          <label class="check-label" title="Mismo nombre y ruta superior"><input id="merge-folders" type="checkbox" checked><span>Combinar carpetas coincidentes</span></label>
+        </fieldset>
+        <div class="merge-actions"><button class="button primary" id="preview" type="button" disabled>Vista previa</button><button class="button" id="sample" type="button">Ejemplos</button><button class="button" id="reset" type="button">Limpiar</button></div>
+      </div>
+      <p class="merge-status" id="status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="result" class="merge-result" aria-labelledby="result-title" hidden>
+      <div class="merge-review">
+        <h2 id="result-title">Vista previa</h2>
+        <dl class="merge-stats"><div><dt>Conservados</dt><dd id="kept-count"></dd></div><div><dt>Duplicados</dt><dd id="removed-count"></dd></div><div><dt>Carpetas combinadas</dt><dd id="merged-count"></dd></div><div><dt>Omitidos</dt><dd id="ignored-count"></dd></div></dl>
+        <p id="skipped-warning" class="merge-alert" hidden><span id="skipped-message"></span> <button type="button" id="review-skipped">Revisar</button></p>
+        <div class="preview-tabs" role="group" aria-label="Vista previa"><button type="button" data-preview-view="retained" aria-pressed="true">Conservados</button><button type="button" data-preview-view="removed" aria-pressed="false">Duplicados</button><button type="button" data-preview-view="ignored" aria-pressed="false">Omitidos</button></div>
+        <div class="preview-scroll" tabindex="0" role="region" aria-label="Vista previa"><table id="preview-table"><thead><tr><th scope="col">Origen</th><th scope="col">Carpeta</th><th scope="col">Título</th><th scope="col">URL</th><th scope="col">Resultado</th></tr></thead><tbody id="preview-body"></tbody></table></div>
+        <p id="empty-view" class="empty-preview" hidden></p>
+        <div class="preview-pagination"><span id="page-info" aria-live="polite"></span><button id="previous" type="button" aria-label="Anterior" title="Anterior">←</button><button id="next" type="button" aria-label="Siguiente" title="Siguiente">→</button></div>
+        <details class="merge-tree"><summary>Estructura de carpetas</summary><div id="tree"></div><p id="tree-limit" class="merge-hint" hidden>Primeros 200 nodos; la descarga incluye todos los elementos.</p></details>
+      </div>
+      <section id="delivery" class="merge-delivery" aria-labelledby="delivery-title">
+        <h2 id="delivery-title">Guardar resultado</h2>
+        <label class="check-label review-confirm"><input type="checkbox" id="reviewed"><span>He revisado duplicados y elementos omitidos.</span></label>
+        <div id="export-output"><p class="merge-hint">Se conservan las fechas originales. Importa el HTML en tu navegador.</p><div class="merge-actions"><button id="download" class="button primary" type="button" disabled>Descargar HTML</button></div></div>
+        <div class="merge-report"><button id="report" class="report-button" type="button" disabled>Informe de combinación</button></div>
+      </section>
+      <aside id="extension-next-step" class="merge-next-step" hidden aria-label="Continuar en Chrome">
+        <img src="../images/app-icon.svg" alt="" width="36" height="36">
+        <div><h3>Archivo combinado listo</h3><p>Impórtalo en Chrome y organízalo con Bookmark Nav.</p></div>
+        <a class="button primary" href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb?utm_source=bookmark_nav_site&amp;utm_medium=tool&amp;utm_campaign=bookmark_merge" target="_blank" rel="noopener noreferrer">Obtener Bookmark Nav</a>
+      </aside>
+    </section>
+    <section id="tool-help" class="merge-notes" aria-label="Ayuda">
+      <details id="html-help"><summary>Importar el HTML</summary><div class="help-content"><p>Importa el HTML descargado en el administrador de marcadores de Chrome. Añade marcadores, no los reemplaza. Conserva los archivos originales como copias de seguridad.</p><p>Chrome omite carpetas vacías y restablece sus fechas. Conserva títulos, URL y fechas de creación de marcadores. Las marcas de barra pueden corresponder a la barra de marcadores del navegador.</p><p><a href="https://support.google.com/chrome/answer/96816?hl=es" target="_blank" rel="noopener noreferrer">Instrucciones de importación de Chrome</a></p></div></details>
+      <details id="rule-help"><summary>Reglas de combinación</summary><div class="help-content"><p>El primer archivo tiene prioridad al eliminar un duplicado. Las URL se comparan exactamente; parámetros, #fragmentos, protocolo y www se mantienen distintos. Por defecto se conservan URL iguales en carpetas diferentes.</p><p>Solo se combinan carpetas con el mismo nombre y ruta superior. Sin combinación, cada origen recibe su carpeta; los nombres repetidos al mismo nivel llevan sufijos y se eliminan las marcas de barra.</p></div></details>
+      <details id="format-help"><summary>Formato y límites</summary><div class="help-content"><p>HTML de marcadores Netscape en UTF-8. Por archivo: hasta 10 MiB, 25,000 marcadores/carpetas y 64 niveles, sin contar la lista exterior. JSON y plist no son compatibles.</p><p>La descarga incluye toda la jerarquía, URL compatibles, títulos y valores ADD_DATE / LAST_MODIFIED disponibles. No incluye iconos, descripciones, etiquetas ni datos de sincronización. Las URL ausentes o no compatibles, incluidas javascript: y data:, aparecen como omitidas. No se comprueba la disponibilidad de los enlaces.</p><p>El resultado puede superar los límites de entrada y no poder leerse de nuevo con esta herramienta. Las carpetas por origen añaden un nivel. Conserva los archivos originales.</p></div></details>
+      <details id="privacy-help"><summary>Privacidad</summary><div class="help-content"><p>Los archivos se procesan en la memoria de esta pestaña, sin subidas ni análisis. Recargar o salir borra los archivos cargados. Las descargas permanecen en tu dispositivo.</p></div></details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Bookmark Nav</span><a href="./">Inicio</a><a href="privacy-policy">Privacidad</a></footer>
+</div>
+</body></html>
