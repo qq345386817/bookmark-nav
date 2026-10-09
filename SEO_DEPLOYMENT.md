@@ -38,4 +38,16 @@ The report showed 44 crawled-but-unindexed URLs, one alternate URL, and no manua
 
 This repair normalizes the 42 already-published pages, adds a real 404 and regression checks. The local bookmark-merging feature, its extra sitemap entries and extension-1.3 privacy drafts are deliberately excluded from this release. Existing pending working-tree content is preserved separately from the selected commit content.
 
+### Acceptance And Pending Google Processing
+
+- `bdae8e7`: canonical, Open Graph, hreflang, navigation and sitemap URL corrections.
+- `1b5f887`: real 404, local clean-URL server, validators and eight regression tests.
+- Both commits were pushed to `main`; Cloudflare Pages deployment succeeded. All 42 production sitemap URLs returned direct HTTP 200, matching canonical and no HTML `noindex`. The live XML is byte-identical to the commit and passes XML parsing. Unknown paths return HTTP 404; `.html` aliases remain HTTP 308; the Google verification file is unchanged.
+- Google accepted a homepage indexing request. `sitemap.xml` was submitted and, after checking its fetchability, resubmitted once.
+- The sitemap report still showed **Couldn't fetch / Unknown / 0 discovered** at the end of this session. This is not a successful sitemap-processing result.
+- Google's live URL Inspection test of the XML at 2026-10-09 14:13:51 reported **Crawl allowed: Yes; Page fetch: Successful**. Manual-action and security reports showed no issues. No WAF, authentication, TLS or DNS security settings were weakened.
+- The 44 crawled-but-unindexed entries remain subject to Google's re-crawl and indexing decisions. The alternate-canonical entry is not a defect to remove. Do not claim that those counts were cleared.
+
+Next check: the sitemap report's fetch status and discovered count, then the homepage and important clean URLs in URL Inspection. Google retries failed sitemap fetches for a few days; if the report continues to fail despite successful live inspection, check actual sitemap-crawler requests in Cloudflare logs before changing protections or inventing alternate sitemap paths. See [Google's sitemap fetch troubleshooting](https://support.google.com/webmasters/answer/7451001?hl=en#sitemap_fetch_errors).
+
 References: [Cloudflare routing and 404 behavior](https://developers.cloudflare.com/pages/configuration/serving-pages/), [Google canonical URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [Google indexing report](https://support.google.com/webmasters/answer/7440203?hl=en).
