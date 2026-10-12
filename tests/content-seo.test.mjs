@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { MERGE_LOCALES } from '../scripts/merge-locales.mjs';
 import { MERGE_TRANSLATIONS } from '../scripts/bookmark-merge-i18n.mjs';
-import { GUIDE_COPY } from '../scripts/merge-guide-copy.mjs';
+import { GUIDE_COPY, GUIDE_UPDATED } from '../scripts/merge-guide-copy.mjs';
 import { parseBookmarkHTML, mergeBookmarks } from '../scripts/bookmark-merge-core.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -41,6 +41,9 @@ test('generated guides and markdown share content, images, source links and cano
     const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
     assert.equal(graph['@graph'][0].inLanguage, locale.lang);
     assert.equal(graph['@graph'][0].name, copy.title);
+    assert.equal(graph['@graph'][0].dateModified, GUIDE_UPDATED);
+    assert.ok(md.includes(GUIDE_UPDATED));
+    assert.ok(html.includes(`<time datetime="${GUIDE_UPDATED}">`));
     assert.equal(graph['@graph'][1]['@type'], 'BreadcrumbList');
     assert.ok(!JSON.stringify(graph).includes('aggregateRating'));
     assert.ok(!JSON.stringify(graph).includes('FAQPage'));

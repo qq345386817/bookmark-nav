@@ -1,6 +1,6 @@
 # 如何合并 Chrome 导出的书签 HTML 文件
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/zh-Hans/merge-bookmarks-guide
 
 合并两份 Chrome 书签导出时，选择两个 HTML 文件，预览重复项，下载合并结果，再导入 Chrome。这是在合并导出文件，不是合并 Chrome 账号或同步库。
 
@@ -42,7 +42,7 @@ Chrome 会忽略空文件夹并重设文件夹日期，保留书签标题、网�
 
 ## 网页版与扩展导入的区别
 
-网页版无需安装扩展，只下载 HTML。直接追加、备份和校验后撤销已准备在扩展 1.3.1 中，不应假设当前商店版已经包含。请核对已安装版本及“导入与合并”入口。直接追加创建独立文件夹，使用当前日期，而非 HTML 原始日期。
+网页版无需安装扩展，只下载 HTML。直接追加、备份和校验后撤销已包含在扩展 1.3.1 中，新版已提交审核；不应假设当前商店版已经包含。请核对已安装版本及“导入与合并”入口。直接追加创建独立文件夹，使用当前日期，而非 HTML 原始日期。
 
 [获取 Bookmark Nav](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

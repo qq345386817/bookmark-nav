@@ -1,6 +1,6 @@
 # Chrome 북마크 HTML 파일을 병합하는 방법
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/ko/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/ko/merge-bookmarks-guide
 
 두 Chrome 북마크 HTML을 선택하고 중복을 미리 본 뒤 병합 파일을 다운로드해 Chrome에 가져오세요. 내보낸 파일을 병합하며 계정이나 브라우저 동기화를 통합하는 기능은 아닙니다.
 
@@ -42,7 +42,7 @@ Chrome은 빈 폴더를 제외하고 폴더 날짜를 재설정합니다. 북마
 
 ## 웹 도구와 확장 프로그램의 차이
 
-웹 도구는 확장 프로그램 없이 HTML을 다운로드합니다. 직접 추가, 백업 및 변경 확인 후 실행 취소는 확장 프로그램 1.3.1에 준비되어 있지만 현재 공개 버전에 있다고 가정하지 마세요. 설치 버전과 가져오기·병합 메뉴를 확인하세요. 직접 추가는 별도 폴더를 만들고 원래 HTML 날짜 대신 현재 날짜를 사용합니다.
+웹 도구는 확장 프로그램 없이 HTML을 다운로드합니다. 직접 추가, 백업 및 변경 확인 후 실행 취소는 확장 프로그램 1.3.1에 포함되어 심사를 신청했지만 현재 공개 버전에 있다고 가정하지 마세요. 설치 버전과 가져오기·병합 메뉴를 확인하세요. 직접 추가는 별도 폴더를 만들고 원래 HTML 날짜 대신 현재 날짜를 사용합니다.
 
 [Bookmark Nav 받기](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

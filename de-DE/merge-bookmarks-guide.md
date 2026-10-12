@@ -1,6 +1,6 @@
 # Chrome-Lesezeichen als HTML zusammenführen
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/de-DE/merge-bookmarks-guide
 
 Zwei Chrome-HTML-Exporte auswählen, Duplikate prüfen, die gemeinsame Datei herunterladen und in Chrome importieren. Das vereint exportierte Dateien, nicht Chrome-Konten oder die Browsersynchronisierung.
 
@@ -42,7 +42,7 @@ Chrome verwirft leere Ordner und setzt Ordnerdaten neu. Titel, URLs und Hinzufü
 
 ## Website und Erweiterungsimport
 
-Die Website funktioniert ohne Erweiterung und lädt nur HTML herunter. Direktes Hinzufügen, Sicherung und geprüftes Rückgängigmachen sind für Erweiterung 1.3.1 vorbereitet; die öffentliche Store-Version muss sie noch nicht enthalten. Installierte Version und Importmenü prüfen. Direkte Importe erstellen einen separaten Ordner mit aktuellen statt ursprünglichen HTML-Daten.
+Die Website funktioniert ohne Erweiterung und lädt nur HTML herunter. Direktes Hinzufügen, Sicherung und geprüftes Rückgängigmachen sind in Erweiterung 1.3.1 enthalten, die zur Prüfung eingereicht wurde; die öffentliche Store-Version muss sie noch nicht enthalten. Installierte Version und Importmenü prüfen. Direkte Importe erstellen einen separaten Ordner mit aktuellen statt ursprünglichen HTML-Daten.
 
 [Bookmark Nav installieren](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

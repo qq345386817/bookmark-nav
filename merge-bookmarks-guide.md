@@ -1,6 +1,6 @@
 # How to merge Chrome bookmark HTML files
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/merge-bookmarks-guide
 
 To merge Chrome bookmarks from two exports, choose both HTML files, preview the duplicates, download the combined file and import it into Chrome. This combines exported files, not Chrome accounts or browser sync.
 
@@ -42,7 +42,7 @@ Chrome drops empty folders and resets folder dates. Bookmark titles, URLs and ad
 
 ## Website tool versus extension import
 
-The website works without an extension and only downloads HTML. Direct addition, backup and guarded undo are prepared for extension 1.3.1; do not assume the public store version includes them yet. Check your installed version and look for Import & merge. Direct additions create a separate folder and use current dates, not original HTML dates.
+The website works without an extension and only downloads HTML. Direct addition, backup and guarded undo are included in extension 1.3.1, which has been submitted for review; do not assume the public store version includes them yet. Check your installed version and look for Import & merge. Direct additions create a separate folder and use current dates, not original HTML dates.
 
 [Get Bookmark Nav](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

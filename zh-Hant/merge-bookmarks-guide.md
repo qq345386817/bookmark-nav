@@ -1,6 +1,6 @@
 # 如何合併 Chrome 匯出的書籤 HTML 檔案
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/zh-Hant/merge-bookmarks-guide
 
 合併兩份 Chrome 書籤匯出時，選擇兩個 HTML 檔案、預覽重複項目、下載結果，再匯入 Chrome。這是在合併匯出檔案，不是合併 Chrome 帳號或同步資料庫。
 
@@ -42,7 +42,7 @@ Chrome 會略過空資料夾並重設資料夾日期，保留書籤標題、網�
 
 ## 網頁版與擴充功能匯入的差別
 
-網頁版不需安裝擴充功能，只下載 HTML。直接新增、備份與驗證後復原已準備在擴充功能 1.3.1 中，不應假設目前商店版已包含。請確認安裝版本與「匯入與合併」入口。直接新增建立獨立資料夾，使用目前日期，而非 HTML 原始日期。
+網頁版不需安裝擴充功能，只下載 HTML。直接新增、備份與驗證後復原已包含在擴充功能 1.3.1 中，新版已提交審核；不應假設目前商店版已包含。請確認安裝版本與「匯入與合併」入口。直接新增建立獨立資料夾，使用目前日期，而非 HTML 原始日期。
 
 [取得 Bookmark Nav](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

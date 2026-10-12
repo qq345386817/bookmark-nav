@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MERGE_LOCALES } from './merge-locales.mjs';
 import { MERGE_TRANSLATIONS } from './bookmark-merge-i18n.mjs';
-import { GUIDE_COPY } from './merge-guide-copy.mjs';
+import { GUIDE_COPY, GUIDE_UPDATED } from './merge-guide-copy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://bookmark-nav.luopeike.com/';
@@ -29,12 +29,12 @@ for (const locale of MERGE_LOCALES) {
   const imagePath = `${prefix}images/merge-guide/${locale.id}.png`;
   // The FAQ is visible HTML. No FAQ rich-result claims or invented software ratings.
   const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@graph': [
-    { '@type': 'WebPage', '@id': canonical + '#page', url: canonical, name: copy.title, description: copy.description, inLanguage: locale.lang, dateModified: '2026-10-09', isPartOf: { '@type': 'WebSite', name: 'Bookmark Nav', url: origin } },
+    { '@type': 'WebPage', '@id': canonical + '#page', url: canonical, name: copy.title, description: copy.description, inLanguage: locale.lang, dateModified: GUIDE_UPDATED, isPartOf: { '@type': 'WebSite', name: 'Bookmark Nav', url: origin } },
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: page.home, item: origin + locale.route }, { '@type': 'ListItem', position: 2, name: copy.title, item: canonical }] },
   ] }).replaceAll('<', '\\u003c');
   const support = fs.readFileSync(path.join(root, locale.route, 'support.html'), 'utf8').match(/<nav[^>]*>.*?<a href="support"[^>]*>([^<]+)<\/a>/s)?.[1];
   if (!support) throw new Error(`${locale.id}: missing support label`);
-  const values = { ...page, ...copy, lang: locale.lang, prefix, canonical, support, imagePath, imageURL: origin + `images/merge-guide/${locale.id}.png`, storeURL: 'https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb', chromeURL: 'https://support.google.com/chrome/answer/96816?hl=' + locale.help, structuredData };
+  const values = { ...page, ...copy, updated: GUIDE_UPDATED, lang: locale.lang, prefix, canonical, support, imagePath, imageURL: origin + `images/merge-guide/${locale.id}.png`, storeURL: 'https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb', chromeURL: 'https://support.google.com/chrome/answer/96816?hl=' + locale.help, structuredData };
   values.alternates = MERGE_LOCALES.map(other => `  <link rel="alternate" hreflang="${other.lang}" href="${origin}${other.route}merge-bookmarks-guide">`).join('\n') + `\n  <link rel="alternate" hreflang="x-default" href="${origin}merge-bookmarks-guide">`;
   values.languageOptions = MERGE_LOCALES.map(other => `<option value="/${other.route}merge-bookmarks-guide"${locale.id === other.id ? ' selected' : ''}>${escape(other.name)}</option>`).join('');
   values.steps = copy.steps.map(step => `<li>${escape(step)}</li>`).join('');
@@ -45,7 +45,7 @@ for (const locale of MERGE_LOCALES) {
   });
   output(locale.route + 'merge-bookmarks-guide.html', html);
   const markdown = [
-    `# ${copy.title}`, '', `Bookmark Nav | 2026-10-09 | ${canonical}`, '', copy.intro, '', `[${page.toolLink}](${origin}${locale.route}merge-bookmarks)`, '',
+    `# ${copy.title}`, '', `Bookmark Nav | ${GUIDE_UPDATED} | ${canonical}`, '', copy.intro, '', `[${page.toolLink}](${origin}${locale.route}merge-bookmarks)`, '',
     `## ${copy.stepsTitle}`, '', ...copy.steps.map((step, index) => `${index + 1}. ${step}`), '',
     `## ${copy.exampleTitle}`, '', copy.example, '', `![${copy.imageAlt}](${values.imageURL})`, '', copy.imageCaption, '',
     `## ${copy.rulesTitle}`, '', page.duplicateHelp, '', page.folderHelp, '', page.exportHelp, '',
@@ -76,7 +76,7 @@ for (const locale of MERGE_LOCALES) {
 }
 const changelogFile = 'changelog.html';
 let changelog = fs.readFileSync(path.join(root, changelogFile), 'utf8');
-const releaseNotes = '<section class="content-merge-help"><h2>Website: eight-language bookmark HTML merger</h2><p>2026-10-09: the standalone <a href="merge-bookmarks">bookmark merger</a> is live in eight languages. Merge two local exports, review exact-URL duplicates and download HTML without installing an extension. Read the <a href="merge-bookmarks-guide">export, merge and import guide</a>.</p><h3>Chrome extension 1.3.1: prepared release candidate</h3><p>The prepared build adds the localized import tool, backup, additive import into a new folder and guarded undo. This website update does not publish the Chrome extension. Check the <a href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb">Chrome Web Store listing</a> and your installed version for availability; the website tool can be used now.</p></section>';
+const releaseNotes = '<section class="content-merge-help"><h2>Website: eight-language bookmark HTML merger</h2><p>2026-10-09: the standalone <a href="merge-bookmarks">bookmark merger</a> is live in eight languages. Merge two local exports, review exact-URL duplicates and download HTML without installing an extension. Read the <a href="merge-bookmarks-guide">export, merge and import guide</a>.</p><h3>Chrome extension update: submitted for review</h3><p>2026-10-12: the extension update has been submitted for review. Build 1.3.1 includes the localized import tool, backup, additive import into a new folder and guarded undo. Submission is not approval or public release. Check the <a href="https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb">Chrome Web Store listing</a> and your installed version for availability; the website tool can be used now.</p></section>';
 changelog = insertSection(changelog, 'merge-changelog', releaseNotes, '<h2>Version 1.2.0</h2>');
 changelog = changelog.replace('does not require an account, cloud sync, analytics, or bookmark migration.', 'does not require an account or a cloud bookmark service. The website merger processes exported files locally; it does not merge Chrome accounts or replace Chrome sync.');
 if (!changelog.includes('href="style/merge-guide.css"')) changelog = changelog.replace('</head>', '  <link rel="stylesheet" href="style/merge-guide.css">\n</head>');

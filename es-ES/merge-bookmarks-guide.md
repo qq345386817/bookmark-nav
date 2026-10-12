@@ -1,6 +1,6 @@
 # Cómo combinar marcadores de Chrome en HTML
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/es-ES/merge-bookmarks-guide
 
 Selecciona dos HTML exportados de Chrome, revisa duplicados, descarga el archivo combinado e impórtalo en Chrome. Combina archivos exportados, no cuentas ni sincronización del navegador.
 
@@ -42,7 +42,7 @@ Chrome omite carpetas vacías y restablece sus fechas. Conserva títulos, URL y 
 
 ## Web frente a importación en la extensión
 
-El sitio funciona sin extensión y solo descarga HTML. La adición directa, copia y deshacer verificado están preparados para la extensión 1.3.1; no asumas que ya están en la versión pública. Comprueba la versión instalada y el menú de importación. La adición directa crea una carpeta separada y usa fechas actuales, no las originales del HTML.
+El sitio funciona sin extensión y solo descarga HTML. La adición directa, copia y deshacer verificado están incluidos en la extensión 1.3.1, enviada a revisión; no asumas que ya están en la versión pública. Comprueba la versión instalada y el menú de importación. La adición directa crea una carpeta separada y usa fechas actuales, no las originales del HTML.
 
 [Obtener Bookmark Nav](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

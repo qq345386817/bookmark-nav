@@ -1,6 +1,6 @@
 # Chrome のブックマーク HTML を結合する方法
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/ja/merge-bookmarks-guide
 
 2 つの Chrome ブックマーク HTML を選び、重複をプレビューし、結合ファイルをダウンロードして Chrome にインポートします。書き出したファイルを結合するもので、アカウントや同期の統合ではありません。
 
@@ -42,7 +42,7 @@ Chrome は空のフォルダを除外し、フォルダの日付を再設定し�
 
 ## ウェブ版と拡張機能の違い
 
-ウェブ版は拡張機能なしで使え、HTML をダウンロードするだけです。直接追加、バックアップ、変更確認付きの取り消しは拡張機能 1.3.1 向けに準備済みですが、公開版に含まれるとは限りません。インストール済みバージョンと結合メニューを確認してください。直接追加は独立フォルダを作り、元の HTML の日付ではなく現在の日付を使います。
+ウェブ版は拡張機能なしで使え、HTML をダウンロードするだけです。直接追加、バックアップ、変更確認付きの取り消しは拡張機能 1.3.1 に含まれ、現在審査に提出済みですが、公開版に含まれるとは限りません。インストール済みバージョンと結合メニューを確認してください。直接追加は独立フォルダを作り、元の HTML の日付ではなく現在の日付を使います。
 
 [Bookmark Nav を入手](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 

@@ -1,6 +1,6 @@
 # Comment fusionner des favoris Chrome en HTML
 
-Bookmark Nav | 2026-10-09 | https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks-guide
+Bookmark Nav | 2026-10-12 | https://bookmark-nav.luopeike.com/fr-FR/merge-bookmarks-guide
 
 Choisissez deux exports HTML de Chrome, vérifiez les doublons, téléchargez le fichier combiné et importez-le dans Chrome. Il s’agit de fichiers exportés, pas de fusion de comptes ou de synchronisation.
 
@@ -42,7 +42,7 @@ Chrome ignore les dossiers vides et réinitialise leurs dates. Les titres, URL e
 
 ## Outil web et import dans l’extension
 
-Le site fonctionne sans extension et télécharge seulement du HTML. Ajout direct, sauvegarde et annulation vérifiée sont préparés pour l’extension 1.3.1 ; ne supposez pas qu’ils figurent déjà dans la version publique. Vérifiez la version installée et le menu d’import. L’ajout direct crée un dossier séparé et utilise les dates actuelles, pas celles du HTML.
+Le site fonctionne sans extension et télécharge seulement du HTML. Ajout direct, sauvegarde et annulation vérifiée sont inclus dans l’extension 1.3.1, soumise à examen ; ne supposez pas qu’ils figurent déjà dans la version publique. Vérifiez la version installée et le menu d’import. L’ajout direct crée un dossier séparé et utilise les dates actuelles, pas celles du HTML.
 
 [Installer Bookmark Nav](https://chromewebstore.google.com/detail/bookmark-nav/flhhneimccgeopajgojnaflmbibagcgb)
 
