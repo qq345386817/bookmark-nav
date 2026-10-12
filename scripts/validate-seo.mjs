@@ -2,8 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
 import { SITE_ORIGIN, canonicalPath } from './seo-urls.mjs';
+import { readSitemap, renderSitemap } from './sitemap.mjs';
 
 const root = path.resolve(process.argv.find(arg => arg.startsWith('--dir='))?.slice(6) || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'));
 const walk = folder => fs.readdirSync(folder, { withFileTypes: true }).flatMap(entry => entry.name.startsWith('.') ? [] : entry.isDirectory() ? walk(path.join(folder, entry.name)) : [path.join(folder, entry.name)]);
@@ -35,11 +35,9 @@ for (const file of walk(root).filter(file => file.endsWith('.html'))) {
 }
 
 const sitemapFile = path.join(root, 'sitemap.xml');
-execFileSync('xmllint', ['--nonet', '--noout', sitemapFile], { stdio: 'pipe' });
-const xml = fs.readFileSync(sitemapFile, 'utf8');
-const locations = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
-const structuralCount = Number(execFileSync('xmllint', ['--nonet', '--xpath', 'count(/*[local-name()="urlset" and namespace-uri()="http://www.sitemaps.org/schemas/sitemap/0.9"]/*[local-name()="url"]/*[local-name()="loc"])', sitemapFile], { encoding: 'utf8' }));
-if (locations.length !== structuralCount || !locations.length) errors.push('Sitemap must be a valid nonempty sitemap urlset');
+const sitemapEntries = readSitemap(sitemapFile);
+const locations = sitemapEntries.map(entry => entry.url);
+try { renderSitemap(sitemapEntries); } catch (error) { errors.push(error.message); }
 if (new Set(locations).size !== locations.length) errors.push('Sitemap contains duplicate URLs');
 for (const url of locations) if (!pages.get(url)?.indexable) errors.push(`Sitemap must contain only existing indexable canonical URLs: ${url}`);
 for (const [canonical, page] of pages) {
@@ -63,4 +61,4 @@ for (const [canonical, page] of pages) {
 if (!fs.existsSync(path.join(root, '404.html'))) errors.push('404.html is required to disable Cloudflare SPA fallback');
 if (!fs.readFileSync(path.join(root, 'robots.txt'), 'utf8').includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) errors.push('robots.txt must declare the canonical sitemap');
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-else console.log(`SEO validation passed: ${locations.length} canonical sitemap URLs; reciprocal hreflang, clean links, assets and 404 checked.`);
+else console.log(`SEO validation passed: ${locations.length} canonical sitemap URLs with valid lastmod; reciprocal hreflang, clean links, assets and 404 checked.`);

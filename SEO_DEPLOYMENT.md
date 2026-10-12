@@ -29,6 +29,8 @@ node scripts/generate-content-pages.mjs --check
 node scripts/generate-merge-pages.mjs --check
 node scripts/generate-llms.mjs
 node scripts/generate-llms.mjs --check
+node scripts/generate-sitemap.mjs
+node scripts/generate-sitemap.mjs --check
 node --test tests/*.test.mjs
 node tests/content-browser.cjs
 ```
@@ -36,6 +38,17 @@ node tests/content-browser.cjs
 The eight localized guides use one real task, not separate doorway pages for keyword variants. HTML is complete without JavaScript; Markdown twins share the same source and are excluded from sitemap/search indexing with `X-Robots-Tag: noindex`. The visible FAQ is ordinary content, not a promise of FAQ rich results. `WebPage` and `BreadcrumbList` describe visible content; no review scores or software-release availability are invented. Support/privacy/home/help descriptions match their respective purpose. The public website and a prepared extension package are separate release states.
 
 The development server emulates clean URLs and 404 routing on localhost. A plain Python file server does not resolve extensionless HTML URLs.
+
+Commit changed HTML before regenerating sitemap lastmod. The generator reads real per-page Git timestamps and requires full history; it does not stamp all pages with the current date on every deploy. `xmllint` parses the XML rather than depending on line layout. HTML content changes, canonical corrections and significant internal-link updates in this repository are reflected; unchanged pages keep their previous dates. Do not claim lastmod forces re-crawling or indexing. See [Google's lastmod guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+
+## GSC Follow-Up: 2026-10-12
+
+- The correct property is `https://bookmark-nav.luopeike.com/`. The index report is dated 2026-10-09: 46 crawled-but-unindexed, 17 discovered-but-unindexed, one alternate with correct canonical, and no indexed pages in that snapshot. These counts are not a live indexability test.
+- Sitemap status is **Success**, last read 2026-10-12, with all 58 canonical URLs discovered. The earlier 42-URL count and temporary sitemap-processing error in an old homepage inspection are historical, not current sitemap failures.
+- The crawled examples include both pre-repair `.html` aliases last seen in August/September and the two guides fetched on October 9. The discovered examples include newly normalized clean URLs as well as other pages. Keep legitimate redirects/canonicals; do not use URL removal or noindex to hide desired pages from these reports.
+- Fresh HTTP acceptance of all 58 URLs found direct 200, matching canonical, no HTML/header noindex, and no challenge pages. Sample aliases return 308 to their clean counterparts; robots remains reachable and unknown paths return 404. The homepage's indexed-version inspection also reports crawl/index allowed, a successful October 9 fetch and self-canonical, despite being unindexed.
+- The website guide/help/changelog now accurately says the extension update has been submitted for review, not approved or publicly released. The extension source and submitted ZIP are not changed by this follow-up.
+- The sitemap now carries verifiable page-level lastmod and tests for regeneration stability. Recheck Google processing after re-crawl; a successful live test or accepted request is not evidence of indexing. Do not promise that all excluded counts will clear.
 
 ## Lightweight GEO
 
